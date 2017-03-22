@@ -1,0 +1,26 @@
+выделить достоинства и недостатки веб технологий
+
+Skills: html, css/sass/less, bootstrap, js/jquery/ts, angular, git, bem, (кросбраузерная верстка, аддаптивная верстка,)
+	
+TOOLS: gulp, webpack(изучить), grunt(изучить), npm, bower, vs code, sublime text 3, atom, photoshop, 
+
+ОБО МНЕ (целеустремленный, довожу начатою работу до конца, стресоустойчивый, легкообучаемый, трудолюбие, стремление к самосовершенствованию)
+	
+
+
+
+	основы seo
+	Опыт использования инструментов сборки проектов (Grunt, Gulp, Webpack);
+	Опыт создания страниц с использованием Flexbox;
+	Опыт работы с системами управления контентом (Wordpress, Drupal и др.);
+    Опыт работы с HTML5, CSS3, CSS3 animations от 3 лет;
+    Опыт кроссбраузерной (IE10+, Chrome, Firefox, Safari) и адаптивной верстки (отображение на мобильных устройствах);
+    Опыт работы с графическими редакторами (Adobe Photoshop, Adobe Illustrator, Sketch и др.);
+    Опыт работы с CSS препроцессорами (LESS, SASS и др.), CSS фреймворками (Twitter Bootstrap, Responsive Grid System, Skeleton и др.);
+    Опыт работы с клиентскими (Handlebars.js, mustache.js, Jade, LoDash и др.) и серверными (Twig, ASP.NET Razor др.) шаблонизаторами;
+    Опыт работы с библиотекой jQuery, написание плагинов jQuery;
+    Отличное владение браузерными инструментами разработчика (Chrome DevTools, Firefox Developer Tools);
+    Опыт применения методологий BEM, SMACSS, OOCSS;
+    Использование систем контроля версий (Git, SVN, Mercurial);
+    Опыт оптимизации скорости загрузки страниц;
+    Опыт оценки времени выполнения проекта;
