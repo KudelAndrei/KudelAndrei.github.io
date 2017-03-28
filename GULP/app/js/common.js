@@ -1,5 +1,5 @@
 $(window).on('load', function () {
- $('.cssload-thecube').delay(500).fadeOut('slow');
+ $('.preloader').delay(500).fadeOut('slow');
 })
 
 $(document).ready(function(){
