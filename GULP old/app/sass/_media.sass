@@ -1,0 +1,174 @@
+@import "bourbon"
+@import "vars"
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+	/**/
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+
+	.section.skills 
+		.skills--html
+			height: 500px
+			.skills-item
+				height: 100%
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+	.wrap-container 
+		.menu-50
+			overflow: hidden
+			&.menu-text
+				width: 100%
+			&.menu-img
+				left: calc(100% - 70px)
+				.menu-image
+					display: none
+	.section
+		&.skills
+			.skills-item
+				height: 80px
+				font-size: 22px
+			.skills
+				&--html
+					margin-bottom: 20px
+					height: 80px
+			.skills-content
+				.skills-card
+					h1
+						display: inline-block
+	
+	.about 
+		.about__head
+			font-size: 30px
+			strong
+				font-size: 44px
+				line-height: 56px
+		.about__age
+			font-size: 28px
+
+	.work
+		.owl-item
+			.owl-works__item
+				&::before
+					top: 16px
+				.owl-works__img
+					padding: 38px 5px 46px
+					&::before
+						top: 26px
+					&::after
+						width: 30px
+						height: 30px
+				&:hover
+					opacity: 0.8
+			&.center
+				.owl-works__item
+		
+
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+	.wrap-container 
+		.menu 
+			li.menu__item a h2
+				font-size: 28px
+				line-height: 50px
+				
+	.wrap-content 
+		.section 
+			.section__head
+				font-size: 44px
+				line-height: 48px
+				margin-bottom: 40px
+
+	.about 
+		.about__head
+			font-size: 26px
+			strong
+				font-size: 29px
+				line-height: 48px
+		.about__age
+			font-size: 26px
+			line-height: 30px
+			font-weight: 400
+			>a 
+				font-size: 30px
+				font-weight: 600
+		.about__education, .about__quality, .about__motivation, .about__skills
+			padding: 0 15px
+			font-size: 16px
+			line-height: 26px
+			.about__categoria
+				margin-left: -10px
+
+	.contact 
+		.contact-info 
+			margin-bottom: 5px
+			.contact-info__item 
+				margin-left: 10px
+				a
+					font-size: 20px
+
+	.skills
+		.skills-content
+			.skills-card, .tools__item
+				text-align: left
+				margin-left: 30px
+				.skills__img, .tools__img
+					width: 60px
+				h1
+					font-size: 24px
+
+	.work__doc
+		margin: 20px
+
+	.container-fluid.mobile
+		.work 
+			.work__card 
+				.link-more
+					top: 5px
+					right: 5px
+				.link-work
+					top: 70%
+					background-color: rgba(255,53,127,0.5)
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px)
+	/**/
+
+
+/*==========  Mobile First  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px)
+	/**/
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px)
+	/**/
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px)
+	.text--vertical
+		transform: rotate(-90deg)
+
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px)
+	.skills-dark
+		height: 100vh
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px)
+	/**/
+
