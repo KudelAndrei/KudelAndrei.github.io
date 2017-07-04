@@ -18,9 +18,8 @@ window.onload = function(){
 		myReuest.open("GET", URL, true);
 		myReuest.onload = function(){
 			if (myReuest.readyState == 4 && myReuest.status == 200){
-				//var myDate = JSON.parse(myReuest.responseText);
-				console.log(myReuest.responseText);
-				//renderWorks(myDate);
+				var myDate = JSON.parse(myReuest.responseText);
+				renderWorks(myDate);
 			}
 			else {
 				console.log(myReuest.readyState, myReuest.status);
