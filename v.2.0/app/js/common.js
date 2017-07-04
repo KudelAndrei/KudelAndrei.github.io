@@ -1,17 +1,11 @@
-/* For preloader */
-// $(window).on('load', function(){
-// 	//$('.preloader').delay(500).fadeOut('slow');
-// });
-
 window.onload = function(){
+
 	var myReuest = new XMLHttpRequest();
-	var containerjson = document.getElementById("json-work");
+	var jsonContainer = document.getElementById("json-container");
 	var btn = document.getElementById("btn");
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "https://kudelandrei.github.io/v.2.0/app/data/works.json"; 
-
-	console.log(URL);
 
 	// функция создания ajax зфпроса
 	function getJson(){
@@ -20,6 +14,7 @@ window.onload = function(){
 			if (myReuest.readyState == 4 && myReuest.status == 200){
 				var myDate = JSON.parse(myReuest.responseText);
 				renderWorks(myDate);
+				console.log(_url);
 			}
 			else {
 				console.log(myReuest.readyState, myReuest.status);
@@ -39,9 +34,18 @@ window.onload = function(){
 		}
 		n += COUNT;
 
-		containerjson.insertAdjacentHTML('beforeend', printHTML);
+		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
 
-	btn.addEventListener("click", getJson);
+	btn.addEventListener("click", getJson); //при нажатии 
 
+	// при скроле
+	window.onscroll = function(){
+		var windowY = window.pageYOffset + window.innerHeight;
+		var containerY = jsonContainer.getBoundingClientRect().bottom + jsonContainer.clientHeight; 
+		console.log( "Браузер = ", windowY ,"; "," Контент = ", containerY);
+		if (windowY > containerY) {
+			getJson();
+		}
+	}
 }
