@@ -237,5 +237,11 @@ $(document).ready(function(){
 	// });
 
 
+	$(window).scrollTo({
+		vra a = $(window).offset().top ;
+
+		console.log(a);
+	});
+
 });
 
