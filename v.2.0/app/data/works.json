@@ -1,18 +1,42 @@
 [
-	{
-		"name": "name",
-		"lastname": "lastname",
-	},
-	{
-		"name": "name1",
-		"lastname": "lastname1",
-	},
-	{
-		"name": "name2",
-		"lastname": "lastname2",
-	},
   {
-		"name": "name2",
-		"lastname": "lastname2",
-	}
+    "name": "Meowsy",
+    "species" : "cat",
+    "foods": {
+      "likes": ["tuna", "catnip"],
+      "dislikes": ["ham", "zucchini"]
+    }
+  },
+  {
+    "name": "Barky",
+    "species" : "dog",
+    "foods": {
+      "likes": ["bones", "carrots"],
+      "dislikes": ["tuna"]
+    }
+  },
+  {
+    "name": "Purrpaws",
+    "species" : "cat",
+    "foods": {
+      "likes": ["mice"],
+      "dislikes": ["cookies"]
+    }
+  },
+   {
+    "name": "QWE",
+    "species" : "caQWEt",
+    "foods": {
+      "likes": ["mice"],
+      "dislikes": ["cookies"]
+    }
+  },
+   {
+    "name": "AWD",
+    "species" : "caAWDt",
+    "foods": {
+      "likes": ["miWDce"],
+      "dislikes": ["cooWkies"]
+    }
+  }
 ]
