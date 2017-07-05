@@ -24,13 +24,16 @@
 	<!-- iOS Safari -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="#000">
 
+	<!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	<link rel="stylesheet" href="css/main.min.css">
 
 </head>
 
 <body>
 
- 	<div class="container-full">
+ 	<!--<div class="container-full">
  		<asaid class="asaid">
  			<button id="btn">click me</button>
  		</asaid>
@@ -42,9 +45,43 @@
  				hello
  			</div>
  		</main>
- 	</div>
+ 	</div>-->
+
+	 	<!--Враппер всей страницы-->
+		<div class="page-wrapper grey lighten-4">
+			<div class="container">
+
+				<!--Весь контент-->
+				<div class="page">
+
+					<!--Левая часть-->
+					<div class="page-left">
+
+						<aside class="page-aside">
+							<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+						</aside>
+
+					</div> <!--конец Левая часть-->
+
+					<!--Правоя часть-->
+					<div class="page-right">
+
+						<!--Верхняя часть-->
+						<header class="page-header">header</header>
+
+						<!--Контент-->
+						<section class="page-content">content</section>
+
+					</div> <!--конец Правоя часть-->
+
+				</div> <!-- конец page-->
+
+			</div> <!-- конец container-->
+
+		</div> <!-- конец page-wrapper-->
 
 	<script src="js/scripts.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 
 </body>
 </html>

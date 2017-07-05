@@ -19,6 +19,9 @@
 	color: #666
 	opacity: 1
 
+*
+	box-sizing: border-box
+
 body input:focus:required:invalid,
 body textarea:focus:required:invalid
 	color: #666
@@ -37,27 +40,59 @@ body
 	font-family: $default-font
 	overflow-x: hidden
 
-.container-full
-	display: flex
-	width: 100%
+// .container-full
+// 	display: flex
+// 	width: 100%
+// 	height: 100%
+
+// .asaid
+// 	width: 30%
+// 	min-width: 320px
+
+// .content
+// 	width: 70%
+// 	background-color: #fafafa
+// 	padding: 10px
+
+// .content-json
+// 	height: 800px
+
+// #json-container
+// 	height: 100px
+// 	border: 2px solid red
+// 	margin-bottom: 50px
+
+
+// Враппер всей страницы
+.page-wrapper
+	position: relative
 	height: 100%
 
-.asaid
-	width: 30%
-	min-width: 320px
+.page
+	display: flex
+	padding: $indent 0
 
-.content
-	width: 70%
-	background-color: #fafafa
-	padding: 10px
+.page-left
+	display: flex
+	background-color: #fff
+	width: 280px
+	z-index: 100
+	border: 2px solid #ccc
+	margin-right: $indent
 
-.content-json
-	height: 800px
+.page-right
+	display: flex
+	flex-direction: column
+	flex: auto
+	width: 100%
 
-#json-container
-	height: 100px
-	border: 2px solid red
-	margin-bottom: 50px
+.page-header
+	border: 1px solid #ccc
+	background-color: #fff
+	margin-bottom: $indent
 
+.page-content
+	border: 1px solid #ccc
+	background-color: #fff
 
 @import "media" // Всегда в конце
