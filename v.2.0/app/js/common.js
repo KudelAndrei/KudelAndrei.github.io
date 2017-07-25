@@ -1,11 +1,22 @@
+/******************/ 
+// переделать код на промисы!!!!
+// добавить тип ajax запроса на json
+/******************/ 
+
 window.onload = function(){
 
+	var menuItem = document.getElementById('menu');
 	var myReuest = new XMLHttpRequest();
 	var jsonContainer = document.getElementById("json-container");
 	var btn = document.getElementById("btn");
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "https://kudelandrei.github.io/v.2.0/app/data/works.json"; 
+
+	menuItem.addEventListener('click', function(event) {
+		event.preventDefault();
+		console.log('click');
+	});
 
 	// функция создания ajax зфпроса
 	function getJson(){
@@ -47,5 +58,6 @@ window.onload = function(){
 		if (windowY > containerY) {
 			getJson();
 		}
-	}
+	};
+
 }
