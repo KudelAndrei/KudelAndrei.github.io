@@ -1,7 +1,6 @@
 @import "fonts"
 @import "libs"
 @import "vars"
-//@import "loader"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -29,35 +28,170 @@ body textarea:required:valid
 html, body
 	height: 100%
 
+html
+	box-sizing: border-box
+*, *:before, *:after
+	box-sizing: inherit
+
+
 body
 	font-size: 16px
 	min-width: 320px
 	position: relative
-	line-height: 1.75
+	line-height: 1.6
 	font-family: $default-font
 	overflow-x: hidden
 
-.container-full
+/*************/
+/* структура проекта */
+/*************/
+
+.header-wrap
 	display: flex
-	width: 100%
+
+/* левая часть */
+.aside
+	position: relative
+	min-width: 280px
+	margin: 20px 20px 20px 0
+
+/* правая часть */
+.content-wrap
+	display: flex
+	flex-direction: column
+	flex: 1 1 auto
+	height: calc(100vh - 50px)
+	min-height: 600px
+	margin: 20px 0 20px 0
+
+/* навигация */
+.navigation
+	position: fixed
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	height: 400px
+	width: 280px
+	border-radius: 3px
+	overflow: hidden
+	@extend .white, .z-depth-1
+
+/* панель заглавной информации */
+.content-header
+	display: flex
+	justify-content: space-between
+	align-items: center
+	padding: 8px 20px
+	font-size: 18px
+	margin-bottom: 20px
+	color: #fff
+	border-radius: 3px
+	@extend .blue, .darken-2, .z-depth-1
+
+/* вся информация */
+.content-contents
+	position: relative
+	background-color: #fff
+	flex: 1
+	border-radius: 3px
+	min-height: 500px
+	@extend .z-depth-1
+
+/***************/
+/*конец структуры*/
+/***************/
+
+
+/* общие стили */
+.flex-center
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-grow: 1
+
+/*конец общих стилей*/
+
+
+/* все стили */
+.home
+	background-color: #fafafa
 	height: 100%
 
-.asaid
-	width: 30%
-	min-width: 320px
+.toggle-menu
+	color: #fff
+	@extend .waves-light, .transparent
 
-.content
-	width: 70%
-	background-color: #fafafa
-	padding: 10px
+/* панель юзер */
+.user
+	display: flex
+	align-items: center
+	justify-content: center
+	min-height: 100px
+	color: #fff
+	@extend .blue, .darken-2
+	.user__img
+		width: 60px
+		height: 60px
+		border-radius: 50%
+		overflow: hidden
+		margin-right: 10px
+		@extend .z-depth-2
+		img
+			max-width: 100%
+	.user__text
+		>h1
+			font-size: 16px
+			font-weight: 700
+			margin: 0 0 10px
+			text-shadow: 1px 1px 1px #444
+		>h3
+			font-size: 14px
+			margin: 0
 
-.content-json
-	height: 800px
+/* меню */
+.menu
+	display: flex
+	flex-direction: column
+	position: relative
+	overflow: hidden
+	.menu__item
+		flex: 1 1 auto
+		width: 100%
+		text-align: center
+		border-bottom: 1px solid #f5f5f5
+		border-right: 2px solid transparent
+		&:last-child
+			border-bottom: none
+		&.active
+			border-right: 2px solid $accent
+			background-color: #fafafa 
+			>a
+				color: $accent
+		>a
+			display: block
+			height: 50px
+			line-height: 50px
+			font-weight: 500
+			letter-spacing: 1px
+			font-size: 16px
+			color: #757575
+	#menu-line
+		position: absolute
+		transition: all 0.5s
+		content: ''
+		width: 2px
+		height: 50px
+		background-color: $accent
+		top: -100px
+		left: 1px
+		z-index: 2
 
-#json-container
-	height: 100px
-	border: 2px solid red
-	margin-bottom: 50px
-
+/* социальные кнокпи */
+.social-isons
+	display: flex
+	justify-content: space-around
+	align-items: center
+	@extend .grey, .lighten-5
+	height: 60px
 
 @import "media" // Всегда в конце
