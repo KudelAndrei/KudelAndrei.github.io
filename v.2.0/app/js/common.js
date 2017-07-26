@@ -5,20 +5,35 @@
 
 window.onload = function(){
 
-	var menuItem = document.getElementById('menu');
-	var myReuest = new XMLHttpRequest();
-	var jsonContainer = document.getElementById("json-container");
-	var btn = document.getElementById("btn");
+	var menuItem = document.getElementById('menu'); // Основное меню
+	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
+	var jsonContainer = document.getElementById("json-container"); // контейнер, куда будут ложиться данные json
+	var btnAjax = document.getElementById("btn"); // кнопка для получение json данных
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "https://kudelandrei.github.io/v.2.0/app/data/works.json"; 
 
+	/* функция активного пункта меню */
 	menuItem.addEventListener('click', function(event) {
+		var menu = document.getElementById('menu').getElementsByTagName('li');
+		var thisMenuItem = event.target.parentNode;
 		event.preventDefault();
-		console.log('click');
+		for(var i = 0; i < menu.length; i++){
+			menu[i].classList.remove('active');
+		}
+		thisMenuItem.classList.add('active');
+		//getMenuLine(event.target);
 	});
 
-	// функция создания ajax зфпроса
+	/* функция для плавающей линии */
+	// function getMenuLine(event){
+	// 	var line = document.getElementById('menu-line');
+	// 	var menuItemPos = event.getBoundingClientRect().top - 163.5;
+	// 	line.style.top = menuItemPos + 'px';
+	// 	console.log(menuItemPos);
+	// }
+
+	/* функция создания ajax зфпроса */
 	function getJson(){
 		myReuest.open("GET", URL, true);
 		myReuest.onload = function(){
@@ -34,6 +49,7 @@ window.onload = function(){
 		myReuest.send();
 	};
 
+	/* функция вставки json-данных в контейнер */
 	function renderWorks(dataJson){
 		var printHTML = "";                  // вывод на html
 		var dataLenght = dataJson.length;    // количетсво всех объектов в файле
@@ -48,16 +64,22 @@ window.onload = function(){
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
 
-	btn.addEventListener("click", getJson); //при нажатии 
+	/* событие получения данных */
+	btnAjax.addEventListener("click", getJson); //при нажатии 
 
-	// при скроле
+	/* событие получения данных при скролле */
 	window.onscroll = function(){
-		var windowY = window.pageYOffset + window.innerHeight;
-		var containerY = jsonContainer.getBoundingClientRect().bottom + jsonContainer.clientHeight; 
-		console.log( "Браузер = ", windowY ,"; "," Контент = ", containerY);
-		if (windowY > containerY) {
-			getJson();
-		}
+
+		function scrollGetWorks(){
+			var windowY = window.pageYOffset + window.innerHeight;
+			var containerY = jsonContainer.getBoundingClientRect().bottom + jsonContainer.clientHeight; 
+			console.log( "Браузер = ", windowY ,"; "," Контент = ", containerY);
+			if (windowY > containerY) {
+				getJson();
+			}
+		};
+		
 	};
+
 
 }
