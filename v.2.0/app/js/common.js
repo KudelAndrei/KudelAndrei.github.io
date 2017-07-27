@@ -64,7 +64,9 @@ window.onload = function(){
 			itemWork.querySelector('.work__head').innerHTML = dataJson[i].head;
 			itemWork.querySelector('.work__desc').innerHTML = dataJson[i].desc;
 			for(var j = 0; j < dataJson[i].tag.lenght; j++){
-				itemWork.querySelector('.work__tags').appendChild(document.createElement('li'));
+				var tagItem = document.createElement('li').className = "work__tag";
+				console.log(tagItem[j]);
+				// itemWork.querySelector('.work__tags').appendChild();
 			}
 			var wrapItem = document.createElement('div');
 			wrapItem.id = 'work__item-' + i;
