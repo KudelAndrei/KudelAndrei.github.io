@@ -1,42 +1,52 @@
 [
 	{
-		"name": "Meowsy",
-		"species" : "cat",
-		"foods": {
-			"likes": ["tuna", "catnip"],
-			"dislikes": ["ham", "zucchini"]
-		}
+		"img": "../img/user.jpg",
+		"type": "landing page 1",
+		"date": "20.10.2017",
+		"head": "Meowsy",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates!",
+		"tag": ["sass", "pug", "js", "angular"],
+		"author-img": "img",
+		"author-name" : "cat"
 	},
 	{
-		"name": "Barky",
-		"species" : "dog",
-		"foods": {
-			"likes": ["bones", "carrots"],
-			"dislikes": ["tuna"]
-		}
+		"img": "../img/user.jpg",
+		"type": "landing page 2",
+		"date": "21.0.2017",
+		"head": "Meowsy 1",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
+		"tag": ["sass", "pug", "js", "angular"],
+		"author-img": "img",
+		"author-name" : "cat"
 	},
 	{
-		"name": "Purrpaws",
-		"species" : "cat",
-		"foods": {
-			"likes": ["mice"],
-			"dislikes": ["cookies"]
-		}
+		"img": "../img/user.jpg",
+		"type": "landing page 3",
+		"date": "22.10.2017",
+		"head": "Meowsy 2",
+		"desc": "Lorem ipsum dolor sit amet, adipisicing elit. Earum, voluptates!",
+		"tag": ["sass", "pug", "js", "angular"],
+		"author-img": "img",
+		"author-name" : "cat"
 	},
-	 {
-		"name": "QWE",
-		"species" : "caQWEt",
-		"foods": {
-			"likes": ["mice"],
-			"dislikes": ["cookies"]
-		}
+	{
+		"img": "../img/user.jpg",
+		"type": "landing page 4",
+		"date": "23.10.2017",
+		"head": "Meowsy 3",
+		"desc": "Lorem ipsum dolor sit amet!",
+		"tag": ["sass", "pug", "js", "angular"],
+		"author-img": "img",
+		"author-name" : "cat"
 	},
-	 {
-		"name": "AWD",
-		"species" : "caAWDt",
-		"foods": {
-			"likes": ["miWDce"],
-			"dislikes": ["cooWkies"]
-		}
+	{
+		"img": "../img/user.jpg",
+		"type": "landing page 5",
+		"date": "24.10.2017",
+		"head": "Meowsy 4",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
+		"tag": ["sass", "pug", "js", "angular"],
+		"author-img": "img",
+		"author-name" : "cat"
 	}
 ]

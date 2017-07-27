@@ -45,9 +45,22 @@ body
 /*************/
 /* структура проекта */
 /*************/
+.container
+	width: 96%
+	max-width: 1500px
+	margin: auto
+
 
 .header-wrap
 	display: flex
+
+.row-flex
+	display: flex
+	justify-content: space-between
+
+.column-flex
+	display: flex
+	flex-direction: column
 
 /* левая часть */
 .aside
@@ -193,5 +206,47 @@ body
 	align-items: center
 	@extend .grey, .lighten-5
 	height: 60px
+
+
+
+
+
+/* работы */
+.works-container
+	display: flex
+	flex-wrap: wrap
+	padding: 10px
+.work__item
+	flex: 1 1 33%
+	max-width: 300px
+	min-width: 250px
+	background-color: #fff
+	margin: 10px
+	transition: all 0.5s ease
+	@extend .z-depth-3
+	.work__img
+		width: 100%
+		>img
+			max-width: 100%
+	.work__content
+		padding: 10px
+	.work__head
+		font-size: 20px
+	.work__tags
+		display: flex
+		flex-wrap: wrap
+	.work__tag
+		margin-right: 10px
+	.work__author
+		display: flex
+		align-items: center
+		.work__author-img
+			width: 40px
+			height: 40px
+			border-radius: 50%
+			overflow: hidden
+			margin-right: 20px
+			>img
+				max-width: 100%
 
 @import "media" // Всегда в конце
