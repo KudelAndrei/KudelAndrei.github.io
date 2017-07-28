@@ -46,7 +46,7 @@ body
 /*************/
 .container
 	width: 96%
-	max-width: 1440px
+	max-width: 1500px
 	height: 100%
 	margin: auto
 
@@ -67,14 +67,17 @@ body
 	position: relative
 	min-width: 280px
 	margin: 20px 20px 20px 0
+	transition: left 0.5s ease
 
 /* правая часть */
 .content-wrap
+	position: relative
 	display: flex
 	flex-direction: column
 	flex: 1 1 auto
 	min-height: calc(100vh - 50px)
 	margin: 20px 0 20px 0
+	transition: left, width, max-width, 0.5s ease
 
 /* навигация */
 .navigation
@@ -102,7 +105,7 @@ body
 	@extend .blue, .darken-2, .z-depth-1
 
 /* вся информация */
-.content-contents
+.content-info
 	position: relative
 	background-color: #fff
 	flex: 1
@@ -211,7 +214,7 @@ body
 
 
 /* работы */
-.works-container
+.container-wrap
 	display: flex
 	flex-wrap: wrap
 	justify-content: space-around
@@ -222,7 +225,7 @@ body
 	flex: 1 1 30%
 	align-self: flex-start
 	min-width: 280px
-	max-width: 400px
+	max-width: 350px
 	background-color: #fff
 	margin: 10px
 	transition: all 0.5s ease

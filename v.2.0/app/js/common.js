@@ -8,6 +8,7 @@ window.onload = function(){
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var jsonContainer = document.getElementById("works"); // контейнер, куда будут ложиться данные json
 	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
+	var toggleMenu = document.getElementById('toggle-menu');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "../data/works.json"; 
@@ -66,6 +67,9 @@ window.onload = function(){
 				tagItem.innerHTML = dataJson[i].tag[j];
 				tags.appendChild(tagItem);
 			}
+
+			itemWork.querySelector('.work__author-img').src = dataJson[i].authorImg;
+			itemWork.querySelector('.work__author-name').innerHTML = dataJson[i].authorName;
 			var wrapItem = document.createElement('div');
  			wrapItem.appendChild(itemWork);
 			printHTML += wrapItem.innerHTML;
@@ -78,6 +82,26 @@ window.onload = function(){
 
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
+
+	/* функция открытия или скрытия меню */ 
+
+	/* функция открытия или закрытия меню */
+	function toogleMenu(){
+		var aside = document.getElementById('aside');
+		var main = document.getElementById('main');
+		this.classList.toggle('active');
+
+		if (this.classList.contains('active')){
+			aside.style.left = "-700px";
+			main.style = "min-width: 100%; left: -300px;";
+		} else {
+			aside.style.left = "0px";
+			main.style = "min-width: auto; left: 0;";
+		}
+
+	}
+
+	toggleMenu.addEventListener('click', toogleMenu);
 
 	/* событие получения данных */
 	btnAjax.addEventListener("click", getJson); //при нажатии 

@@ -6,8 +6,8 @@
 		"head": "Meowsy",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates!",
 		"tag": ["JS", "Angular", "React", "Jquery", "Pug"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"authorImg": "../img/user.jpg",
+		"authorName" : "authorName"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -16,8 +16,8 @@
 		"head": "Meowsy 1",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
 		"tag": ["Pug", "SASS", "Less", "Components"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"authorImg": "../img/user.jpg",
+		"authorName" : "Name LastName"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -26,8 +26,8 @@
 		"head": "Meowsy 2",
 		"desc": "Lorem ipsum dolor sit amet, adipisicing elit. Earum, voluptates!",
 		"tag": ["Hello", "World", "you", "Are"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"authorImg": "img",
+		"authorName" : "First Name"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -36,8 +36,8 @@
 		"head": "Meowsy 3",
 		"desc": "Lorem ipsum dolor sit amet!",
 		"tag": ["sass", "Jade", "Vue", "Material"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"authorImg": "img",
+		"authorName" : "Second Name"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -46,7 +46,7 @@
 		"head": "Meowsy 4",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
 		"tag": ["sass", "pug", "js", "angular"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"authorImg": "img",
+		"authorName" : "Hello Name"
 	}
 ]
