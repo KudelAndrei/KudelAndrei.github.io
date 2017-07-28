@@ -41,6 +41,10 @@ window.onload = function(){
 				var myDate = JSON.parse(myReuest.response);
 				renderWorks(myDate);
 			}
+			else {
+				/* придумать как остановить запрос, если нету данных */
+				console.log(myReuest.readyState, myReuest.status);
+			}
 		}
 		myReuest.send();
 	};
@@ -59,20 +63,24 @@ window.onload = function(){
 			itemWork.querySelector('.work__date').innerHTML = dataJson[i].date;
 			itemWork.querySelector('.work__head').innerHTML = dataJson[i].head;
 			itemWork.querySelector('.work__desc').innerHTML = dataJson[i].desc;
-			
-			for(var j = 0; j < dataJson[i].tag.length; j++){
-				var tags = itemWork.querySelector('.work__tags');
-				var tagItem = tags.querySelector('.work__tag');
-				tagItem.innerHTML = dataJson[i].tag[j];
-				tags.appendChild(tagItem);
+			for(var j = 0; j < dataJson[i].tag.lenght; j++){
+				var tagItem = document.createElement('li').className = "work__tag";
+				console.log(tagItem[j]);
+				// itemWork.querySelector('.work__tags').appendChild();
 			}
 			var wrapItem = document.createElement('div');
+			wrapItem.id = 'work__item-' + i;
  			wrapItem.appendChild(itemWork);
+			//itemWork.getElementsByClassName('work__type').innerHTML;
+
+			// var div = document.createElement("div");
+			// var workItem = div.className("work__item");
+			// workItem.innerHTML = 'sefsefsef';
+			// var image = "<div class='work__img'><img src=" + dataJson[i].img + "></img></div>";
+			// var tag = "<h3 class='work__head'>" + dataJson[i].head + "</h2>";
+			// var content = document.createElement('div');
 			printHTML += wrapItem.innerHTML;
 
-			if (i == dataLenght - 1) {
-				btnAjax.classList.add('disabled');
-			}
 		}
 		n += COUNT;
 

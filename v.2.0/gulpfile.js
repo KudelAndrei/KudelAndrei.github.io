@@ -13,7 +13,6 @@ var gulp           = require('gulp'),
 		ftp            = require('vinyl-ftp'),
 		notify         = require("gulp-notify");
 
-// Скрипты проекта
 
 gulp.task('common-js', function() {
 	return gulp.src([
@@ -27,18 +26,11 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		// 'app/libs/materialize/js/initial.js',
-		// 'app/libs/materialize/js/buttons.js',
-		// 'app/libs/materialize/js/waves.js',
-		// 'app/libs/materialize/js/tabs.js',
-		// 'app/libs/materialize/js/transitions.js',
-		// 'app/libs/materialize/js/global.js',
-		// 'app/libs/materialize/js/animation.js',
 		'app/libs/materialize/js/bin/materialize.min.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
-	// .pipe(uglify()) // Минимизировать весь js (на выбор)
+	//.pipe(uglify()) // Минимизировать весь js (на выбор)
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -66,7 +58,7 @@ gulp.task('sass', function() {
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
+	gulp.watch(['libs/**/*.js', 'app/js/*.js'], ['js']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
 
@@ -88,12 +80,16 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 		]).pipe(gulp.dest('dist/css'));
 
 	var buildJs = gulp.src([
-		'app/js/scripts.min.js',
+		'app/js/**',
 		]).pipe(gulp.dest('dist/js'));
 
 	var buildFonts = gulp.src([
 		'app/fonts/**/*',
 		]).pipe(gulp.dest('dist/fonts'));
+
+	var buildData = gulp.src([
+			'app/data/*',
+		]).pipe(gulp.dest('dist/data'));
 
 });
 

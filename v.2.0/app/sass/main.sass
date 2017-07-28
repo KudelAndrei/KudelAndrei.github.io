@@ -33,7 +33,6 @@ html
 *, *:before, *:after
 	box-sizing: inherit
 
-
 body
 	font-size: 16px
 	min-width: 320px
@@ -47,7 +46,7 @@ body
 /*************/
 .container
 	width: 96%
-	max-width: 1500px
+	max-width: 1440px
 	height: 100%
 	margin: auto
 
@@ -223,14 +222,15 @@ body
 	flex: 1 1 30%
 	align-self: flex-start
 	min-width: 280px
+	max-width: 400px
 	background-color: #fff
 	margin: 10px
 	transition: all 0.5s ease
 	@extend .z-depth-3
 	.work__img
-		width: 100%
+		max-width: 100%
 		>img
-			max-width: 100%
+			width: 100%
 	.work__content
 		padding: 10px
 	.work__head
@@ -251,5 +251,10 @@ body
 			margin-right: 20px
 			>img
 				max-width: 100%
+
+.btn-open
+	// @extend .blue, .darken-1
+	@extend .red
+
 
 @import "media" // Всегда в конце
