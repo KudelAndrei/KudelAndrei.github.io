@@ -8,7 +8,8 @@ window.onload = function(){
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var jsonContainer = document.getElementById("works"); // контейнер, куда будут ложиться данные json
 	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
-	var toggleMenu = document.getElementById('toggle-menu');
+	var toggleMenu = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
+	var home = document.getElementById('home'); // для мобильников
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "../data/works.json"; 
@@ -22,16 +23,8 @@ window.onload = function(){
 			menu[i].classList.remove('active');
 		}
 		thisMenuItem.classList.add('active');
-		//getMenuLine(event.target);
-	});
 
-	/* функция для плавающей линии */
-	// function getMenuLine(event){
-	// 	var line = document.getElementById('menu-line');
-	// 	var menuItemPos = event.getBoundingClientRect().top - 163.5;
-	// 	line.style.top = menuItemPos + 'px';
-	// 	console.log(menuItemPos);
-	// }
+	});
 
 	/* функция создания ajax зфпроса */
 	function getJson(){
@@ -91,20 +84,47 @@ window.onload = function(){
 		var main = document.getElementById('main');
 		this.classList.toggle('active');
 
-		if (this.classList.contains('active')){
-			aside.style.left = "-700px";
-			main.style = "min-width: 100%; left: -300px;";
+		if (main.classList.contains('mobile')){
+			if (toggleMenu.classList.contains('active')){
+				aside.style.left = "-700px";
+				main.style = "min-width: 100%; right: 300px;";
+			} else {
+				aside.style.left = "0px";
+				//main.style = "right: 0;";
+			}
+			console.log('mobile');
 		} else {
-			aside.style.left = "0px";
-			main.style = "min-width: auto; left: 0;";
+			if (toggleMenu.classList.contains('active')){
+				aside.style.left = "-700px";
+				main.style = "min-width: 100%; right: 300px;";
+			} else {
+				aside.style.left = "0px";
+				main.style = "width: auto; right: 0;";
+			}
 		}
-
 	}
+
+	/* функция на проверку дисплея */
+	function mobileDisplay(){
+		if(window.innerWidth < 680) {
+			home.classList.add('mobile');
+		}
+		else {
+			home.classList.remove('mobile');
+		}
+	}
+
+	mobileDisplay();
 
 	toggleMenu.addEventListener('click', toogleMenu);
 
 	/* событие получения данных */
 	btnAjax.addEventListener("click", getJson); //при нажатии 
+
+	/* событие при изменении разришения дисплея */
+	window.onresize = function(){
+		mobileDisplay();
+	}
 
 	/* событие получения данных при скролле */
 	window.onscroll = function(){
