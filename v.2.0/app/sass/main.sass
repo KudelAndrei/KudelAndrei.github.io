@@ -184,4 +184,22 @@ body
 	@extend .red
 
 
+.work-filters
+	display: flex
+	margin: 0
+	width: 100%	
+	color: rgba(#fff, .8)
+	@extend .blue, .darken-3
+	.work__filter
+		padding: 10px 15px
+		cursor: pointer
+		&:hover
+			border-bottom: 2px solid #eee
+			color: #fff
+		&.active
+			@extend .blue, .darken-2
+			border-bottom: 2px solid #eee
+			color: #fff
+
+
 @import "media" // Всегда в конце

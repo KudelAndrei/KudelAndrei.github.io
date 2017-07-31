@@ -6,6 +6,9 @@ window.onload = function(){
 
 	var menuItem = document.getElementById('menu'); // Основное меню
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
+	var myReuestHTML = new XMLHttpRequest(); // ajax зпрос для получения html
+	var filter = document.getElementById('btn-filters'); // добавление табов ****временно
+	var filterContainer = document.getElementById('content-info'); // контейнер для табов
 	var jsonContainer = document.getElementById("works"); // контейнер, куда будут ложиться данные json
 	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
@@ -29,7 +32,7 @@ window.onload = function(){
 		thisMenuItem.classList.add('active');
 	});
 
-	/* функция создания ajax зфпроса */
+	/* функция создания ajax зфпроса (работы) */
 	function getJson(){
 		myReuest.open("GET", URL, true);
 		myReuest.setRequestHeader('Content-Type', 'application/json');
@@ -42,6 +45,26 @@ window.onload = function(){
 		myReuest.send();
 	};
 
+	/* функция ajax запроса (фильтры) */
+	function getHTML(){
+		this.classList.add('disabled');
+		myReuestHTML.open("GET", "../layout/tabworks.html", true);
+		myReuestHTML.setRequestHeader('Content-Type', 'application/html');
+		myReuestHTML.onreadystatechange = function(){
+			if(myReuestHTML.readyState == 4 && myReuestHTML.status == 200) {
+				var myHTML = myReuestHTML.responseText;
+				renderHTML(myHTML);
+			}
+		}
+		myReuestHTML.send();
+	};
+
+	/* функция вставки html в контейнер */
+	function renderHTML(_filters) {
+		filterContainer.insertAdjacentHTML('afterBegin', _filters);
+		filterWorks();
+	}
+
 	/* функция вставки json-данных в контейнер */
 	function renderWorks(dataJson){
 		var printHTML = "";                  // вывод на html
@@ -51,6 +74,7 @@ window.onload = function(){
 		k = dataLenght - n < COUNT ? dataLenght - n: COUNT; 
 		for (var i = n; i < n + k; i++) {
 			var itemWork = jsonContainer.firstChild.nextSibling.cloneNode(true);
+			itemWork.classList.add(dataJson[i].type);
 			itemWork.querySelector('.work__img').src = dataJson[i].img;
 			itemWork.querySelector('.work__type').innerHTML = dataJson[i].type;
 			itemWork.querySelector('.work__date').innerHTML = dataJson[i].date;
@@ -67,7 +91,7 @@ window.onload = function(){
 			itemWork.querySelector('.work__author-img').src = dataJson[i].authorImg;
 			itemWork.querySelector('.work__author-name').innerHTML = dataJson[i].authorName;
 			var wrapItem = document.createElement('div');
- 			wrapItem.appendChild(itemWork);
+			wrapItem.appendChild(itemWork);
 			printHTML += wrapItem.innerHTML;
 
 			if (i == dataLenght - 1) {
@@ -78,6 +102,21 @@ window.onload = function(){
 
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
+
+	function filterWorks(){
+		var workFilter = document.getElementById('work-filters');
+
+		workFilter.addEventListener('click', function(){
+			var selectFilter = event.target;
+
+			for (var i = 0; i < jsonContainer.children.length; i++) {
+				jsonContainer.children[i].style = "display: none";
+				if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+					jsonContainer.children[i].style = "display: block";
+				}
+			}
+		});
+	}
 
 	/* функция открытия или закрытия меню */
 	function toogleMenu(){
@@ -131,6 +170,8 @@ window.onload = function(){
 			main.style = "min-width: 100%; left: -300px;";
 		}
 	}
+
+	filter.addEventListener('click', getHTML);
 
 	mobileDisplay();
 
