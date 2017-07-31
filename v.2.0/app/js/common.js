@@ -8,8 +8,10 @@ window.onload = function(){
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var jsonContainer = document.getElementById("works"); // контейнер, куда будут ложиться данные json
 	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
-	var toggleMenu = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
+	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
+	var aside = document.getElementById('aside');
+	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "../data/works.json"; 
@@ -76,30 +78,33 @@ window.onload = function(){
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
 
-	/* функция открытия или скрытия меню */ 
-
 	/* функция открытия или закрытия меню */
 	function toogleMenu(){
-		var aside = document.getElementById('aside');
-		var main = document.getElementById('main');
 		this.classList.toggle('active');
+		isActiveMenu();
+	}
 
-		if (main.classList.contains('mobile')){
-			if (toggleMenu.classList.contains('active')){
-				aside.style.left = "-700px";
-				main.style = "min-width: 100%; right: 300px;";
-			} else {
-				aside.style.left = "0px";
-				//main.style = "right: 0;";
+	/* функция проверки меню на активность */
+	function isActiveMenu(){
+		/* меню для мобильников */ 
+		if (home.classList.contains('mobile')){
+			if (btnToggle.classList.contains('active')){
+				aside.style = "left: -600px;";
+				main.style = "min-width: 100%; left: -300px;";
 			}
-			console.log('mobile');
-		} else {
-			if (toggleMenu.classList.contains('active')){
-				aside.style.left = "-700px";
-				main.style = "min-width: 100%; right: 300px;";
-			} else {
-				aside.style.left = "0px";
-				main.style = "width: auto; right: 0;";
+			else {
+				aside.style = "left: 0px;";
+			}
+		} 
+		/* меню для девайсов */
+		else {
+			if (btnToggle.classList.contains('active')){
+				aside.style = "left: 0px;";
+				main.style = "min-width: auto; left: 0;";
+			}
+			else {
+				aside.style = "left: -600px;";
+				main.style = "min-width: 100%; left: -300px;";
 			}
 		}
 	}
@@ -116,7 +121,7 @@ window.onload = function(){
 
 	mobileDisplay();
 
-	toggleMenu.addEventListener('click', toogleMenu);
+	btnToggle.addEventListener('click', toogleMenu);
 
 	/* событие получения данных */
 	btnAjax.addEventListener("click", getJson); //при нажатии 
@@ -124,6 +129,7 @@ window.onload = function(){
 	/* событие при изменении разришения дисплея */
 	window.onresize = function(){
 		mobileDisplay();
+		isActiveMenu();
 	}
 
 	/* событие получения данных при скролле */

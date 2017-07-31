@@ -1,0 +1,80 @@
+@import "libs"
+
+.home
+	&.mobile
+		.aside
+			left: -600px
+			.navigation
+				@extend .z-depth-4
+		.content-wrap
+			min-width: 100%
+			left: -300px
+
+
+.container
+	width: 96%
+	max-width: 1500px
+	height: 100%
+	margin: auto
+
+.header-wrap
+	display: flex
+
+.row-flex
+	display: flex
+	justify-content: space-between
+
+.column-flex
+	display: flex
+	flex-direction: column
+
+/* левая часть */
+.aside
+	position: relative
+	min-width: 280px
+	margin: 20px 20px 20px 0
+	transition: left 0.3s ease
+	z-index: 10
+
+/* правая часть */
+.content-wrap
+	position: relative
+	display: flex
+	flex-direction: column
+	flex: 1 1 auto
+	min-height: calc(100vh - 50px)
+	margin: 20px 0 20px 0
+	transition: width 0.5s ease-in
+
+/* навигация */
+.navigation
+	position: fixed
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	height: 400px
+	width: 280px
+	border-radius: 3px
+	overflow: hidden
+	@extend .white, .z-depth-1
+
+/* панель заглавной информации */
+.content-header
+	display: flex
+	justify-content: space-between
+	align-items: center
+	padding: 8px 20px
+	min-height: 60px
+	font-size: 18px
+	margin-bottom: 20px
+	color: #fff
+	border-radius: 3px
+	@extend .blue, .darken-2, .z-depth-1
+
+/* вся информация */
+.content-info
+	position: relative
+	background-color: #fff
+	flex: 1
+	border-radius: 3px
+	@extend .z-depth-1
