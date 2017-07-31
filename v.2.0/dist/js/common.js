@@ -15,7 +15,7 @@ window.onload = function(){
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
-	var URL = "../data/works.json"; 
+	var URL = "https://github.com/KudelAndrei/kudelandrei.github.io/blob/master/v.2.0/dist/data/works.json"; 
 
 	/* функция активного пункта меню */
 	menuItem.addEventListener('click', function(event) {
@@ -31,7 +31,7 @@ window.onload = function(){
 
 	/* функция создания ajax зфпроса */
 	function getJson(){
-		myReuest.open("GET", URL, true);
+		myReuest.open("GET", "https://github.com/KudelAndrei/kudelandrei.github.io/blob/master/v.2.0/dist/data/works.json", true);
 		myReuest.setRequestHeader('Content-Type', 'application/json');
 		myReuest.onreadystatechange = function(){
 			if (myReuest.readyState == 4 && myReuest.status == 200){

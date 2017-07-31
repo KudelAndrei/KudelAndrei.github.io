@@ -1,7 +1,7 @@
 [
 	{
 		"img": "../img/user.jpg",
-		"type": "landing page 1",
+		"type": "landing",
 		"date": "20.10.2017",
 		"head": "Meowsy",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates!",
@@ -11,7 +11,7 @@
 	},
 	{
 		"img": "../img/user.jpg",
-		"type": "landing page 2",
+		"type": "design",
 		"date": "21.0.2017",
 		"head": "Meowsy 1",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
@@ -21,7 +21,7 @@
 	},
 	{
 		"img": "../img/user.jpg",
-		"type": "landing page 3",
+		"type": "design",
 		"date": "22.10.2017",
 		"head": "Meowsy 2",
 		"desc": "Lorem ipsum dolor sit amet, adipisicing elit. Earum, voluptates!",
@@ -31,7 +31,7 @@
 	},
 	{
 		"img": "../img/user.jpg",
-		"type": "landing page 4",
+		"type": "angular",
 		"date": "23.10.2017",
 		"head": "Meowsy 3",
 		"desc": "Lorem ipsum dolor sit amet!",
@@ -41,7 +41,7 @@
 	},
 	{
 		"img": "../img/user.jpg",
-		"type": "landing page 5",
+		"type": "verstka",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
