@@ -10,6 +10,7 @@ window.onload = function(){
 	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
+	var homeBefore = document.getElementById('home-before');
 	var aside = document.getElementById('aside');
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
@@ -21,11 +22,11 @@ window.onload = function(){
 		var menu = document.getElementById('menu').getElementsByTagName('li');
 		var thisMenuItem = event.target.parentNode;
 		event.preventDefault();
+		closeMobileMenu();
 		for(var i = 0; i < menu.length; i++){
 			menu[i].classList.remove('active');
 		}
 		thisMenuItem.classList.add('active');
-
 	});
 
 	/* функция создания ajax зфпроса */
@@ -88,16 +89,18 @@ window.onload = function(){
 	function isActiveMenu(){
 		/* меню для мобильников */ 
 		if (home.classList.contains('mobile')){
+			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
-				aside.style = "left: -600px;";
-				main.style = "min-width: 100%; left: -300px;";
+				aside.style = "left: 0px;";
+				homeBefore.style = "left: 0;";
 			}
 			else {
-				aside.style = "left: 0px;";
+				aside.style = "left: -600px;";
 			}
 		} 
 		/* меню для девайсов */
 		else {
+			homeBefore.style = "left: -100%;";
 			if (btnToggle.classList.contains('active')){
 				aside.style = "left: 0px;";
 				main.style = "min-width: auto; left: 0;";
@@ -119,18 +122,32 @@ window.onload = function(){
 		}
 	}
 
+	/* функция для закрытия мобильного меню */ 
+	function closeMobileMenu(){
+		if (home.classList.contains('mobile')){
+			aside.style = "left: -600px;";
+			homeBefore.style = "left: -100%;";
+			btnToggle.classList.remove('active');
+			main.style = "min-width: 100%; left: -300px;";
+		}
+	}
+
 	mobileDisplay();
 
 	btnToggle.addEventListener('click', toogleMenu);
 
+	homeBefore.addEventListener('click', function(){
+		closeMobileMenu();
+	});
+
 	/* событие получения данных */
-	btnAjax.addEventListener("click", getJson); //при нажатии 
+	btnAjax.addEventListener("click", getJson); 
 
 	/* событие при изменении разришения дисплея */
 	window.onresize = function(){
 		mobileDisplay();
 		isActiveMenu();
-	}
+	};
 
 	/* событие получения данных при скролле */
 	window.onscroll = function(){
