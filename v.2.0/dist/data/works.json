@@ -5,9 +5,9 @@
 		"date": "20.10.2017",
 		"head": "Meowsy",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates!",
-		"tag": ["sass", "pug", "js", "angular"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"tag": ["JS", "Angular", "React", "Jquery", "Pug"],
+		"authorImg": "../img/user.jpg",
+		"authorName" : "authorName"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -15,9 +15,9 @@
 		"date": "21.0.2017",
 		"head": "Meowsy 1",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
-		"tag": ["sass", "pug", "js", "angular"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"tag": ["Pug", "SASS", "Less", "Components"],
+		"authorImg": "../img/user.jpg",
+		"authorName" : "Name LastName"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -25,9 +25,9 @@
 		"date": "22.10.2017",
 		"head": "Meowsy 2",
 		"desc": "Lorem ipsum dolor sit amet, adipisicing elit. Earum, voluptates!",
-		"tag": ["sass", "pug", "js", "angular"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"tag": ["Hello", "World", "you", "Are"],
+		"authorImg": "img",
+		"authorName" : "First Name"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -35,9 +35,9 @@
 		"date": "23.10.2017",
 		"head": "Meowsy 3",
 		"desc": "Lorem ipsum dolor sit amet!",
-		"tag": ["sass", "pug", "js", "angular"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"tag": ["sass", "Jade", "Vue", "Material"],
+		"authorImg": "img",
+		"authorName" : "Second Name"
 	},
 	{
 		"img": "../img/user.jpg",
@@ -46,7 +46,7 @@
 		"head": "Meowsy 4",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
 		"tag": ["sass", "pug", "js", "angular"],
-		"author-img": "img",
-		"author-name" : "cat"
+		"authorImg": "img",
+		"authorName" : "Hello Name"
 	}
 ]

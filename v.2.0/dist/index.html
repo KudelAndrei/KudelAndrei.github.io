@@ -31,103 +31,99 @@
 
 <body>
 
-	<section class="home">
+	<section id="home" class="home">
+		<div id="home-before" class="home-before waves-effect"></div>
 		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<header class="header-wrap">
+			<header class="header-wrap">
 
-						<!-- левая часть -->
-						<asaid class="aside">
-							<nav class="navigation">
-								<div class="user">
-									<div class="user__img"><img src="img/user.jpg"></div>
-									<div class="user__text">
-										<h1>Кудёлко Андрей</h1>
-										<h3>Верстальщик</h3>
-									</div>
-								</div>
-								<ul class="menu" id="menu">
-									<li class="menu__item waves-effect"><a href="/abaut">Обо мне</a></li>
-									<li class="menu__item waves-effect"><a href="/works">Работы</a></li>
-									<li class="menu__item waves-effect"><a href="/conract">Контакты</a></li>
-									<li id="menu-line"></li>
-								</ul>
-								<div class="social-isons">
-									<a class="sosial__icon" href="#" target="_blank"><i class="material-icons">favorite</i></a>
-									<a class="sosial__icon" href="#" target="_blank"><i class="material-icons">favorite_border</i></a>
-									<a class="sosial__icon" href="#" target="_blank"><i class="material-icons">face</i></a>
-								</div>
-							</nav>
-						</asaid>
-
-						<!-- правая часть -->
-						<main class="content-wrap">
-							<div class="content-header">
-								<div class="content-header__text"><span>Главная</span></div>
-								<a href="#" id="toggle-menu" class="toggle-menu btn-floating waves-effect"><i class="material-icons">menu</i></a>
+				<!-- левая часть -->
+				<asaid id="aside" class="aside">
+					<nav class="navigation">
+						<div class="user">
+							<div class="user__img"><img src="img/user.jpg"></div>
+							<div class="user__text">
+								<h1>Кудёлко Андрей</h1>
+								<h3>Верстальщик</h3>
 							</div>
+						</div>
+						<ul class="menu" id="menu">
+							<li class="menu__item waves-effect"><a href="/abaut">Обо мне</a></li>
+							<li class="menu__item waves-effect"><a href="/works">Работы</a></li>
+							<li class="menu__item waves-effect"><a href="/conract">Контакты</a></li>
+							<li id="menu-line"></li>
+						</ul>
+						<div class="social-isons">
+							<a class="sosial__icon" href="#" target="_blank"><i class="material-icons">favorite</i></a>
+							<a class="sosial__icon" href="#" target="_blank"><i class="material-icons">favorite_border</i></a>
+							<a class="sosial__icon" href="#" target="_blank"><i class="material-icons">face</i></a>
+						</div>
+					</nav>
+				</asaid>
 
-							<div class="content-contents">
-								<div class="flex-center">
-									<div class="content-json">
-										<div id="works" class="works-container">
-											<div class="work__item">
-												<div class="work__img"><img src="img/user.jpg" alt=""></div>
-												<div class="work__content">
-													<div class="row-flex">
-														<div class="work__type">Web Design</div>
-														<div class="work__date">10.10.2017</div>
-													</div>
-													<div class="column-flex">
-														<h3 class="work__head">Material Design Card - For Blog Post Article</h3>
-														<p class="work__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, molestias!</p>
-														<ul class="work__tags">
-															<li class="work__tag">sass</li>
-															<li class="work__tag">js</li>
-															<li class="work__tag">material icons</li>
-															<li class="work__tag">pug</li>
-														</ul>
-														<div class="work__author">
-															<div class="work__author-img"><img src="img/user.jpg" alt=""></div>
-															<p class="work__author-name">by Kudel Andrei</p>
-														</div>
-													</div>
-												</div>
-											</div>
+				<!-- правая часть -->
+				<main id="main" class="content-wrap">
+					<div class="content-header">
+						<div class="content-header__text"><span>Главная</span></div>
+						<button id="toggle-menu" class="toggle-menu active btn-floating waves-effect"><i class="material-icons">menu</i></button>
+					</div>
 
+					<div id="content-info" class="content content-info">
+
+						<!-- мои работы -->
+						<div class="content-work">
+							<div id="works" class="container-wrap">
+								<div class="work__item">
+									<div class="work__img"><img src="img/works/noimage.png" alt=""></div>
+									<div class="work__content">
+										<div class="row-flex">
+											<div class="work__type">Web Design</div>
+											<div class="work__date">10.10.2017</div>
 										</div>
-										<button id="work-ajax">открыть инфу</button>
+										<div class="column-flex">
+											<h3 class="work__head">Material Design Card - For Blog Post Article</h3>
+											<p class="work__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, molestias!</p>
+											<ul class="work__tags">
+												<li class="work__tag">sass</li>
+												<li class="work__tag">js</li>
+												<li class="work__tag">material icons</li>
+												<li class="work__tag">pug</li>
+											</ul>
+											<div class="work__author">
+												<div class="work__author-img"><img src="img/user.jpg" alt=""></div>
+												<p class="work__author-name">by Kudel Andrei</p>
+											</div>
+										</div>
 									</div>
 								</div>
-
 							</div>
+							<button id="work-ajax" class="btn btn-open">открыть инфу</button>
+						</div>
 
-						</main>
+						<!-- обо мне -->
+						<div class="content content-about content--none">
+							<div class="container-wrap">
+								hello about
+							</div>
+						</div>
 
-					</header>
-				</div>
-			</div>
+						<!-- контакты -->
+						<div class="content content-contact content--none">
+							<div class="container-wrap">
+								heelo contact
+							</div>
+						</div>
+
+					</div>
+				</main>
+
+			</header>
 		</div>
 	</section>
 
-<!-- 
-	<div class="container">
-		<asaid class="asaid">
-			<button id="btn">click me</button>
-		</asaid>
-		<main class="content">
-			<div id="json-work" class="content-json">
-				hello i am json content is
-			</div>
-			<div id="json-container">
-				hello
-			</div>
-		</main>
-	</div> -->
-
-	<script src="js/scripts.min.js"></script>
-	<script src="js/common.min.js"></script>
+	<!-- все подключенный библиотеки -->
+	<script src="js/scripts.min.js"></script> 
+	<!-- написаные скрипты -->
+	<!-- <script src="js/common.min.js"></script> -->
 
 </body>
 </html>
