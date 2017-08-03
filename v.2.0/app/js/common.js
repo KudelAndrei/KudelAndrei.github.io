@@ -4,7 +4,8 @@
 
 window.onload = function(){
 
-	var menuItem = document.getElementById('menu'); // Основное меню
+	var menu = document.getElementById('menu'); // Основное меню
+	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var myReuestHTML = new XMLHttpRequest(); // ajax зпрос для получения html
 	var filter = document.getElementById('btn-filters'); // добавление табов ****временно
@@ -21,16 +22,21 @@ window.onload = function(){
 	var URL = "../data/works.json"; 
 
 	/* функция активного пункта меню */
-	menuItem.addEventListener('click', function(event) {
-		var menu = document.getElementById('menu').getElementsByTagName('li');
-		var thisMenuItem = event.target.parentNode;
-		event.preventDefault();
+	menu.addEventListener('click', function(){
 		closeMobileMenu();
-		for(var i = 0; i < menu.length; i++){
-			menu[i].classList.remove('active');
-		}
-		thisMenuItem.classList.add('active');
+		activeItem(event, menuItem, true);
 	});
+
+	/* универсальная функия активного пункта меню */
+	function activeItem(event, _activeItem, parent){
+		var thisActiveItem = parent ? event.target.parentNode: event.target;
+		event.preventDefault();
+		for(var i = 0; i < _activeItem.length; i++){
+			_activeItem[i].classList.remove('active');
+		}
+		thisActiveItem.classList.add('active');
+		console.log(thisActiveItem);
+	}
 
 	/* функция создания ajax зфпроса (работы) */
 	function getJson(){
@@ -63,6 +69,12 @@ window.onload = function(){
 	function renderHTML(_filters) {
 		filterContainer.insertAdjacentHTML('afterBegin', _filters);
 		filterWorks();
+
+		var filters = document.getElementById('work-filters');
+		var filterItem = filters.getElementsByTagName('li');
+		filters.addEventListener('click', function(){
+			activeItem(event, filterItem);
+		});
 	}
 
 	/* функция вставки json-данных в контейнер */
@@ -103,16 +115,18 @@ window.onload = function(){
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
 
+	/* функция фильтрации работ */
 	function filterWorks(){
 		var workFilter = document.getElementById('work-filters');
 
 		workFilter.addEventListener('click', function(){
 			var selectFilter = event.target;
-
-			for (var i = 0; i < jsonContainer.children.length; i++) {
-				jsonContainer.children[i].style = "display: none";
-				if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
-					jsonContainer.children[i].style = "display: block";
+			if (workFilter != selectFilter) {
+				for (var i = 0; i < jsonContainer.children.length; i++) {
+					jsonContainer.children[i].style = "display: none";
+					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+						jsonContainer.children[i].style = "display: block";
+					}
 				}
 			}
 		});
