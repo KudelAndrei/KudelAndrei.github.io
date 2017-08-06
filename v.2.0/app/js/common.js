@@ -1,5 +1,6 @@
 /******************/ 
 // переделать код на промисы!!!!
+// сделать кнопку на верх
 /******************/ 
 
 window.onload = function(){
@@ -20,6 +21,9 @@ window.onload = function(){
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 	var URL = "../data/works.json"; 
+
+	mobileDisplay();
+	isActiveMenu();
 
 	/* функция активного пункта меню */
 	menu.addEventListener('click', function(){
@@ -144,11 +148,11 @@ window.onload = function(){
 		if (home.classList.contains('mobile')){
 			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
-				aside.style = "left: 0px;";
-				homeBefore.style = "left: 0;";
+				aside.style = "left: 50%; transform: translateX(-50%);";
+				homeBefore.style = "left: 0; top: 0; border-radius: 0; opacity: .8; transform: scale(1);";
 			}
 			else {
-				aside.style = "left: -600px;";
+				aside.style = "left: -600px; transform: translateX(0);";
 			}
 		} 
 		/* меню для девайсов */
@@ -186,8 +190,6 @@ window.onload = function(){
 	}
 
 	filter.addEventListener('click', getHTML);
-
-	mobileDisplay();
 
 	btnToggle.addEventListener('click', toogleMenu);
 

@@ -5,18 +5,28 @@
 	.home-before
 		position: absolute
 		content: ""
-		top: 0
-		left: -100%
+		top: 1000px
+		left: -1000px
 		width: 100%
 		height: 100%
-		background-color: rgba(#000, .4)
-		z-index: 9
-		transition: left 0.1s ease
+		border-radius: 50%
+		transform: scale(0)
+		opacity: 0
+		background-image: radial-gradient(top,circle cover,#181819 0,#1266b9 95%)
+		z-index: 99
+		transition: all 0.4s ease-in-out
 		cursor: pointer
 	&.mobile
 		.aside
-			.navigation
+			z-index: 99
+			.navigations
+				z-index: 100
 				@extend .z-depth-4
+		.toggle-menu
+			@extend .z-depth-2
+			i
+				background-color: #1976d2
+
 
 
 .container
