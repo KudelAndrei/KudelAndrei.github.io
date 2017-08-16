@@ -131,7 +131,7 @@ window.onload = function(){
 		for (var i = n; i < n + k; i++) {
 			var itemWork = jsonContainer.firstChild.nextSibling.cloneNode(true);
 			itemWork.classList.add(dataJson[i].type);
-			itemWork.querySelector('.work__img').src = dataJson[i].img;
+			itemWork.querySelector('.work__img img').src = dataJson[i].img;
 			itemWork.querySelector('.work__type').innerHTML = dataJson[i].type;
 			itemWork.querySelector('.work__date').innerHTML = dataJson[i].date;
 			itemWork.querySelector('.work__head').innerHTML = dataJson[i].head;
@@ -144,7 +144,7 @@ window.onload = function(){
 				tags.appendChild(tagItem);
 			}
 
-			itemWork.querySelector('.work__author-img').src = dataJson[i].authorImg;
+			itemWork.querySelector('.work__author-img img').src = dataJson[i].authorImg;
 			itemWork.querySelector('.work__author-name').innerHTML = dataJson[i].authorName;
 			var wrapItem = document.createElement('div');
 			wrapItem.appendChild(itemWork);
@@ -168,7 +168,7 @@ window.onload = function(){
 			if (workFilter != selectFilter) {
 				for (var i = 0; i < jsonContainer.children.length; i++) {
 					jsonContainer.children[i].style = "visibility: hidden; max-height: 0;";
-					setTimeout(jsonContainer.children[i].style = 'display: none;', 1000);
+					setTimeout(jsonContainer.children[i].style = 'display: none;', 500);
 					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
 						jsonContainer.children[i].style = "visibility: visible; max-height: 100%; display: block;";
 					}

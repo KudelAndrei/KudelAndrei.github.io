@@ -1,6 +1,6 @@
 [
 	{
-		"img": "../img/user.jpg",
+		"img": "../img/works/5.png",
 		"type": "landing",
 		"date": "20.10.2017",
 		"head": "Meowsy",
@@ -10,7 +10,7 @@
 		"authorName" : "authorName"
 	},
 	{
-		"img": "../img/user.jpg",
+		"img": "../img/works/1.png",
 		"type": "design",
 		"date": "21.0.2017",
 		"head": "Meowsy 1",
@@ -20,33 +20,33 @@
 		"authorName" : "Name LastName"
 	},
 	{
-		"img": "../img/user.jpg",
+		"img": "../img/works/2.jpeg",
 		"type": "design",
 		"date": "22.10.2017",
 		"head": "Meowsy 2",
 		"desc": "Lorem ipsum dolor sit amet, adipisicing elit. Earum, voluptates!",
 		"tag": ["Hello", "World", "you", "Are"],
-		"authorImg": "img",
+		"authorImg": "../img/works/noimage.png",
 		"authorName" : "First Name"
 	},
 	{
-		"img": "../img/user.jpg",
+		"img": "../img/works/3.png",
 		"type": "angular",
 		"date": "23.10.2017",
 		"head": "Meowsy 3",
 		"desc": "Lorem ipsum dolor sit amet!",
 		"tag": ["sass", "Jade", "Vue", "Material"],
-		"authorImg": "img",
+		"authorImg": "../img/user.jpg",
 		"authorName" : "Second Name"
 	},
 	{
-		"img": "../img/user.jpg",
+		"img": "../img/works/4.png",
 		"type": "verstka",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
 		"tag": ["sass", "pug", "js", "angular"],
-		"authorImg": "img",
+		"authorImg": "../img/user.jpg",
 		"authorName" : "Hello Name"
 	}
 ]
