@@ -1,6 +1,7 @@
 @import "fonts"
 @import "vars"
 @import "_structure"
+@import "preloader"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -135,17 +136,9 @@ body
 
 
 /* работы */
-.container-wrap
-	display: flex
-	flex-wrap: wrap
-	justify-content: space-around
-	align-content: flex-start
-	padding: 10px
-
-.content--none
-	display: none
-
 .work__item
+	visibility: hidden
+	min-height: 0
 	flex: 1 1 30%
 	align-self: flex-start
 	min-width: 280px
@@ -183,23 +176,69 @@ body
 	// @extend .blue, .darken-1
 	@extend .red
 
+.btn-top
+	position: fixed
+	width: 80px
+	height: 80px
+	z-index: 90
+	font-size: 20px
+	bottom: -100px
+	right: -100px
+	@extend .red, .z-depth-3
+	overflow: hidden
+	color: #fff
+	>i
+		padding-right: 20px
+		padding-bottom: 20px
+		font-size: 30px
+	&:hover
+		bottom: -30px
+		right: -30px
 
-.work-filters
+
+//filter//
+.filters-wrap
 	display: flex
+	justify-content: space-between
 	margin: 0
 	width: 100%	
 	color: rgba(#fff, .8)
-	@extend .blue, .darken-3
+	margin-bottom: 10px
+	padding: 5px
+	font-size: 14px
+	@extend .cyan, .darken-1, .z-depth-1
+
+.work-filters, .work__filter-wrap
+	display: flex
+	margin: 0
 	.work__filter
 		padding: 10px 15px
 		cursor: pointer
+		transition: all 0.3s 
+		border-radius: 3px
 		&:hover
-			border-bottom: 2px solid #eee
 			color: #fff
 		&.active
-			@extend .blue, .darken-2
-			border-bottom: 2px solid #eee
+			@extend .cyan
 			color: #fff
+.work__filter-wrap
+	align-items: center
+	.work__filter
+		padding: 0
+		font-size: 26px
+		display: flex
+		padding: 10px
+		height: 100%
+		color: rgba(#fff, .5)
+		border-radius: 50%
+		margin-right: 5px
+		&:hover
+			border-bottom: none
+		&.active
+			border-bottom: none
+			background-color: transparent
+			@extend .z-depth-1
+/* filters */
 
 
 @import "media" // Всегда в конце

@@ -1,0 +1,69 @@
+.loaders {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 98;
+  transition: all 0.3s;
+}
+
+.loader-container .loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto; 
+}
+
+.loader-container {
+	position: relative;
+	width: 250px;
+	height: 250px; 
+  margin: auto;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg); } }
+.circle-pulse .loader {
+  width: 100px;
+  height: 100px; }
+  .circle-pulse .loader > div {
+    margin: 10px 0 0 26px;
+    width: 50%;
+    height: 50%;
+    border: 2px solid #1565c0;
+    border-radius: 50%;
+    animation: circlePulse 1s ease infinite; }
+
+@keyframes circlePulse {
+  0% {
+    transform: scale(0.1); }
+  80% {
+    opacity: .8; }
+  100% {
+    transform: scale(1);
+    opacity: 0; } }
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg); } }
+.circle-pulse-multiple .loader {
+  width: 100px;
+  height: 100px; }
+  .circle-pulse-multiple .loader > div {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 50%;
+    height: 50%;
+    border: 2px solid #1565c0;
+    border-radius: 50%;
+    animation: circlePulse 1s ease infinite; }
+  .circle-pulse-multiple .loader .circle-2 {
+    animation-delay: -.9s; }
+  .circle-pulse-multiple .loader .circle-3 {
+    animation-delay: -.8s; }

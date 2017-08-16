@@ -61,8 +61,30 @@
 	flex-direction: column
 	flex: 1 1 auto
 	min-height: calc(100vh - 50px)
+	height: 100%
 	margin: 20px 0 20px 0
 	transition: width 0.5s ease-in
+
+.container-wrap, .container-works
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-around
+	align-content: flex-start
+	padding: 10px
+
+.container-works
+	padding: 0
+
+.content
+	position: relative
+	display: none
+
+.active
+	display: block
+
+.hidden
+	display: none
+	visibility: hidden
 
 /* навигация */
 .navigation
@@ -92,6 +114,7 @@
 /* вся информация */
 .content-info
 	position: relative
+	min-height: 320px
 	background-color: #fff
 	flex: 1
 	border-radius: 3px

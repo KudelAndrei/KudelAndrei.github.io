@@ -47,9 +47,9 @@
 							</div>
 						</div>
 						<ul class="menu" id="menu">
-							<li class="menu__item waves-effect"><a href="/abaut">Обо мне</a></li>
-							<li class="menu__item waves-effect"><a href="/works">Работы</a></li>
-							<li class="menu__item waves-effect"><a href="/conract">Контакты</a></li>
+							<li class="menu__item waves-effect" data-link="about"><a href="/about">Обо мне</a></li>
+							<li class="menu__item waves-effect" data-link="works"><a href="/works">Работы</a></li>
+							<li class="menu__item waves-effect" data-link="contact"><a href="/contact">Контакты</a></li>
 							<li id="menu-line"></li>
 						</ul>
 						<div class="social-isons">
@@ -67,12 +67,28 @@
 						<button id="toggle-menu" class="toggle-menu active btn-floating waves-effect"><i class="material-icons">menu</i></button>
 					</div>
 
-					<div id="content-info" class="content content-info">
+					<div id="content-info" class="content-info">
+
+						<!-- прелоадер -->
+						<div id="loaders" class="loaders">
+							<div class="loader-container circle-pulse">
+								<div class="loader">
+									<div class="circle"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- обо мне -->
+						<div id="about" class="content container-wrap">
+							hello about
+						</div>
+
+
 
 						<!-- мои работы -->
-						<div class="content-work">
-							<div id="works" class="container-wrap">
-
+						<div id="works" class="content container-wrap">
+							
+							<div id="works-container" class="container-works">
 								<div class="work__item all">
 									<div class="work__img"><img src="img/works/noimage.png" alt=""></div>
 									<div class="work__content">
@@ -96,25 +112,19 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
+
 							<button id="work-ajax" class="btn btn-open">открыть больше работ</button>
 							<button id="btn-filters" class="btn btn-open">открыть filters</button>
+
 						</div>
 
-						<!-- обо мне -->
-						<div class="content content-about content--none">
-							<div class="container-wrap">
-								hello about
-							</div>
-						</div>
 
 						<!-- контакты -->
-						<div class="content content-contact content--none">
-							<div class="container-wrap">
-								heelo contact
-							</div>
+						<div id="contact" class="content container-wrap">
+							heelo contact
 						</div>
+
 
 					</div>
 				</main>
@@ -122,6 +132,8 @@
 			</header>
 		</div>
 	</section>
+
+	<button id="btn-top" class="btn btn-top btn-floating waves-effect"><i class="material-icons">keyboard_arrow_up</i></button>
 
 	<!-- все подключенный библиотеки -->
 	<script src="js/scripts.min.js"></script> 
