@@ -1,37 +1,82 @@
 /******************/ 
 // переделать код на промисы!!!!
+// сделать сортировку
+// начальную загрузку работ
 /******************/ 
 
 window.onload = function(){
 
-	var menuItem = document.getElementById('menu'); // Основное меню
+	var menu = document.getElementById('menu'); // Основное меню
+	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
-	var jsonContainer = document.getElementById("works"); // контейнер, куда будут ложиться данные json
+	var myReuestHTML = new XMLHttpRequest(); // ajax зпрос для получения html
+	var filter = document.getElementById('btn-filters'); // добавление табов ****временно
+	var filterContainer = document.getElementById('content-info'); // контейнер для табов
+	var jsonContainer = document.getElementById("works-container"); // контейнер, куда будут ложиться данные json
 	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
+	var btnTop = document.getElementById('btn-top'); //на верх
 	var homeBefore = document.getElementById('home-before');
 	var aside = document.getElementById('aside');
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
-	var URL = "https://github.com/KudelAndrei/kudelandrei.github.io/blob/master/v.2.0/dist/data/works.json"; 
+	var URL = "../data/works.json"; 
+
+	mobileDisplay();
+	isActiveMenu();
+	loadWindow();
+
+	/* после загрузки страницы */
+	function loadWindow(){
+		menu.firstElementChild.classList.add('active');
+		document.getElementById('about').classList.add('active');
+		setTimeout(function(){
+			document.getElementById('loaders').classList.add('hidden');
+		}, 300);
+	};
 
 	/* функция активного пункта меню */
-	menuItem.addEventListener('click', function(event) {
-		var menu = document.getElementById('menu').getElementsByTagName('li');
-		var thisMenuItem = event.target.parentNode;
-		event.preventDefault();
+	menu.addEventListener('click', function(){
 		closeMobileMenu();
-		for(var i = 0; i < menu.length; i++){
-			menu[i].classList.remove('active');
-		}
-		thisMenuItem.classList.add('active');
+		activeItem(event, menuItem, true);
+		openActiveConent(event);
 	});
 
-	/* функция создания ajax зфпроса */
+	//* функция открытия контента *//
+	function openActiveConent(event){
+		document.getElementById('loaders').classList.remove('hidden');
+		for(var i = 0; i < filterContainer.children.length; i++){
+			filterContainer.children[i].classList.remove('active');
+			if (event.target.parentNode.getAttribute('data-link') == filterContainer.children[i].id){
+				filterContainer.children[i].classList.add('active');
+				if (filterContainer.children[i].id == 'works'){
+					setTimeout(function(){
+						jsonContainer.querySelector('.work__item').style = "visibility: visible; max-height: 100%;";
+					}, 400);
+				}
+			}
+		}
+		setTimeout(function(){
+			document.getElementById('loaders').classList.add('hidden');
+		}, 300);
+	}
+
+	/* универсальная функия активного пункта меню */
+	function activeItem(event, _activeItem, parent){
+		var thisActiveItem = parent ? event.target.parentNode: event.target;
+		event.preventDefault();
+		for(var i = 0; i < _activeItem.length; i++){
+			_activeItem[i].classList.remove('active');
+		}
+		thisActiveItem.classList.add('active');
+		//console.log(thisActiveItem);
+	}
+
+	/* функция создания ajax зфпроса (работы) */
 	function getJson(){
-		myReuest.open("GET", "https://github.com/KudelAndrei/kudelandrei.github.io/blob/master/v.2.0/dist/data/works.json", true);
+		myReuest.open("GET", URL, true);
 		myReuest.setRequestHeader('Content-Type', 'application/json');
 		myReuest.onreadystatechange = function(){
 			if (myReuest.readyState == 4 && myReuest.status == 200){
@@ -42,6 +87,41 @@ window.onload = function(){
 		myReuest.send();
 	};
 
+	/* функция ajax запроса (фильтры) */
+	function getHTML(){
+		this.classList.add('disabled');
+		myReuestHTML.open("GET", "../layout/filters-work.html", true);
+		myReuestHTML.setRequestHeader('Content-Type', 'application/html');
+		myReuestHTML.onreadystatechange = function(){
+			if(myReuestHTML.readyState == 4 && myReuestHTML.status == 200) {
+				var myHTML = myReuestHTML.responseText;
+				renderHTML(myHTML);
+			}
+		}
+		myReuestHTML.send();
+	};
+
+	/* функция вставки фильтра в контейнер */
+	function renderHTML(_filters) {
+		var containerFilters = document.getElementById('works');
+		containerFilters.insertAdjacentHTML('afterBegin', _filters);
+		filterWorks();
+
+		var filters = document.getElementById('work-filters');
+		var filterItem = filters.getElementsByTagName('li');
+
+		var sorts = document.getElementById('work-sort');
+		var sortsItem = sorts.getElementsByTagName('li');
+
+		filters.addEventListener('click', function(){
+			activeItem(event, filterItem);
+		});
+
+		sorts.addEventListener('click', function(){
+			activeItem(event, sortsItem);
+		});
+	}
+
 	/* функция вставки json-данных в контейнер */
 	function renderWorks(dataJson){
 		var printHTML = "";                  // вывод на html
@@ -51,7 +131,8 @@ window.onload = function(){
 		k = dataLenght - n < COUNT ? dataLenght - n: COUNT; 
 		for (var i = n; i < n + k; i++) {
 			var itemWork = jsonContainer.firstChild.nextSibling.cloneNode(true);
-			itemWork.querySelector('.work__img').src = dataJson[i].img;
+			itemWork.classList.add(dataJson[i].type);
+			itemWork.querySelector('.work__img img').src = dataJson[i].img;
 			itemWork.querySelector('.work__type').innerHTML = dataJson[i].type;
 			itemWork.querySelector('.work__date').innerHTML = dataJson[i].date;
 			itemWork.querySelector('.work__head').innerHTML = dataJson[i].head;
@@ -64,10 +145,10 @@ window.onload = function(){
 				tags.appendChild(tagItem);
 			}
 
-			itemWork.querySelector('.work__author-img').src = dataJson[i].authorImg;
+			itemWork.querySelector('.work__author-img img').src = dataJson[i].authorImg;
 			itemWork.querySelector('.work__author-name').innerHTML = dataJson[i].authorName;
 			var wrapItem = document.createElement('div');
- 			wrapItem.appendChild(itemWork);
+			wrapItem.appendChild(itemWork);
 			printHTML += wrapItem.innerHTML;
 
 			if (i == dataLenght - 1) {
@@ -78,6 +159,24 @@ window.onload = function(){
 
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
 	};
+
+	/* функция фильтрации работ */
+	function filterWorks(){
+		var workFilter = document.getElementById('work-filters');
+
+		workFilter.addEventListener('click', function(){
+			var selectFilter = event.target;
+			if (workFilter != selectFilter) {
+				for (var i = 0; i < jsonContainer.children.length; i++) {
+					jsonContainer.children[i].style = "visibility: hidden; max-height: 0;";
+					setTimeout(jsonContainer.children[i].style = 'display: none;', 500);
+					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+						jsonContainer.children[i].style = "visibility: visible; max-height: 100%; display: block;";
+					}
+				}
+			}
+		});
+	}
 
 	/* функция открытия или закрытия меню */
 	function toogleMenu(){
@@ -91,11 +190,11 @@ window.onload = function(){
 		if (home.classList.contains('mobile')){
 			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
-				aside.style = "left: 0px;";
-				homeBefore.style = "left: 0;";
+				aside.style = "left: 50%; transform: translateX(-50%);";
+				homeBefore.style = "left: 0; top: 0; border-radius: 0; opacity: .8; transform: scale(1);";
 			}
 			else {
-				aside.style = "left: -600px;";
+				aside.style = "left: -600px; transform: translateX(0);";
 			}
 		} 
 		/* меню для девайсов */
@@ -132,7 +231,7 @@ window.onload = function(){
 		}
 	}
 
-	mobileDisplay();
+	filter.addEventListener('click', getHTML);
 
 	btnToggle.addEventListener('click', toogleMenu);
 
@@ -152,14 +251,22 @@ window.onload = function(){
 	/* событие получения данных при скролле */
 	window.onscroll = function(){
 
-		function scrollGetWorks(){
-			var windowY = window.pageYOffset + window.innerHeight;
-			var containerY = jsonContainer.getBoundingClientRect().bottom + jsonContainer.clientHeight; 
-			console.log( "Браузер = ", windowY ,"; "," Контент = ", containerY);
-			if (windowY > containerY) {
-				getJson();
+		// function scrollGetWorks(){
+		// 	var windowY = window.pageYOffset + window.innerHeight;
+		// 	var containerY = jsonContainer.getBoundingClientRect().bottom + jsonContainer.clientHeight; 
+		// 	console.log( "Браузер = ", windowY ,"; "," Контент = ", containerY);
+		// 	if (windowY > containerY) {
+		// 		getJson();
+		// 	}
+		// };
+
+		function srcollTop(){
+			if (window.pageYOffset >= 600) {
+				btnTop.style = "bottom: -35px; right: -35px;";
 			}
+			else btnTop.style = "bottom: 0; roght: 0;";
 		};
+		srcollTop();
 		
 	};
 
