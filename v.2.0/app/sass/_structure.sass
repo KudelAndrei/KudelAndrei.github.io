@@ -74,6 +74,32 @@
 
 .container-works
 	padding: 0
+	&.list
+		flex-direction: column
+		.work__item
+			display: flex
+			flex-direction: row
+			width: 100%
+			max-width: 100%
+			flex: 1 1 auto
+			margin: 20px 0
+			@extend .z-depth-0
+			background-color: #fdfdfd
+			border-top: 1px solid #f9f9f9
+			border-bottom: 1px solid #f9f9f9
+			.work__img
+				width: 50%
+				max-width: 50%
+				height: 320px
+			.work__content
+				display: flex
+				flex-direction: column
+				width: 50%
+				align-items: space-between
+				.column-flex
+					flex: 1 1 auto
+					justify-content: space-between
+
 
 .content
 	position: relative

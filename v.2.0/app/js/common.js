@@ -2,6 +2,7 @@
 // переделать код на промисы!!!!
 // сделать сортировку
 // начальную загрузку работ
+// на все пункты меню сделать ajax запросы, при том, только первый раз делать запрос, после чего просто открывать страницу
 /******************/ 
 
 window.onload = function(){
@@ -44,7 +45,7 @@ window.onload = function(){
 		openActiveConent(event);
 	});
 
-	//* функция открытия контента *//
+	//* функция открытия контента (работ)*//
 	function openActiveConent(event){
 		document.getElementById('loaders').classList.remove('hidden');
 		for(var i = 0; i < filterContainer.children.length; i++){
@@ -52,9 +53,7 @@ window.onload = function(){
 			if (event.target.parentNode.getAttribute('data-link') == filterContainer.children[i].id){
 				filterContainer.children[i].classList.add('active');
 				if (filterContainer.children[i].id == 'works'){
-					setTimeout(function(){
-						jsonContainer.querySelector('.work__item').style = "visibility: visible; max-height: 100%;";
-					}, 400);
+					jsonContainer.querySelector('.work__item').style = "display: flex;";
 				}
 			}
 		}
@@ -119,6 +118,15 @@ window.onload = function(){
 
 		sorts.addEventListener('click', function(){
 			activeItem(event, sortsItem);
+
+			/* сортировка */
+			var activeSort = document.querySelector('#work-sort .work__filter.active');
+			if (activeSort.dataset.sort == 'list'){
+				jsonContainer.classList.add('list');
+			} else {
+				jsonContainer.classList.remove('list');
+
+			}
 		});
 	}
 
@@ -158,6 +166,18 @@ window.onload = function(){
 		n += COUNT;
 
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
+
+		/* фильтрация работ после добавления */
+		var selectFilter = document.querySelector(".work__filter.active");
+		if (selectFilter) {
+			for (var i = 0; i < jsonContainer.children.length; i++) {
+				jsonContainer.children[i].style = "display: none;";
+				if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+					jsonContainer.children[i].style = "display: flex;";
+				}
+			}
+		}
+
 	};
 
 	/* функция фильтрации работ */
@@ -168,10 +188,9 @@ window.onload = function(){
 			var selectFilter = event.target;
 			if (workFilter != selectFilter) {
 				for (var i = 0; i < jsonContainer.children.length; i++) {
-					jsonContainer.children[i].style = "visibility: hidden; max-height: 0;";
-					setTimeout(jsonContainer.children[i].style = 'display: none;', 500);
+					jsonContainer.children[i].style = "display: none;";
 					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
-						jsonContainer.children[i].style = "visibility: visible; max-height: 100%; display: block;";
+						jsonContainer.children[i].style = "display: flex;";
 					}
 				}
 			}
