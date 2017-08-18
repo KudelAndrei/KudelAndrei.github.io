@@ -29,6 +29,17 @@ window.onload = function(){
 	isActiveMenu();
 	loadWindow();
 
+	btnTop.addEventListener('click', function(e) {
+	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
+	   scrollTop();
+	}, false);
+
+	/* плавный скролл на верх */ 
+	function scrollTop(){
+		 window.scrollBy(0,-50); // чем меньше значение (цифра -10), тем выше скорость перемещения
+	  	if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
+	}
+
 	/* после загрузки страницы */
 	function loadWindow(){
 		menu.firstElementChild.classList.add('active');
@@ -234,9 +245,11 @@ window.onload = function(){
 	function mobileDisplay(){
 		if(window.innerWidth < 680) {
 			home.classList.add('mobile');
+			btnToggle.classList.remove('active');
 		}
 		else {
 			home.classList.remove('mobile');
+			btnToggle.classList.add('active');
 		}
 	}
 
@@ -279,14 +292,13 @@ window.onload = function(){
 		// 	}
 		// };
 
-		function srcollTop(){
+		function openTop(){
 			if (window.pageYOffset >= 600) {
 				btnTop.style = "bottom: -35px; right: -35px;";
 			}
-			else btnTop.style = "bottom: 0; roght: 0;";
+			else btnTop.style = "bottom: -100px; right: -100px;";
 		};
-		srcollTop();
-		
+		openTop();
 	};
 
 
