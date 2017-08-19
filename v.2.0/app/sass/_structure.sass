@@ -44,6 +44,7 @@
 
 .column-flex
 	display: flex
+	text-align: left
 	flex-direction: column
 
 /* левая часть */
@@ -85,10 +86,8 @@
 			max-width: 100%
 			flex: 1 1 auto
 			margin: 20px 0
-			@extend .z-depth-0
-			background-color: #fdfdfd
-			border-top: 1px solid #f9f9f9
-			border-bottom: 1px solid #f9f9f9
+			&:nth-child(2n)
+				flex-direction: row-reverse
 			.work__img
 				width: 50%
 				max-width: 50%
@@ -106,6 +105,9 @@
 .content
 	position: relative
 	display: none
+
+.content-works
+	text-align: center
 
 .active
 	display: block
