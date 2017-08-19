@@ -1,7 +1,6 @@
 /******************/ 
-// переделать код на промисы!!!!
-// сделать сортировку
 // начальную загрузку работ
+// на все пункты меню сделать ajax запросы, при том, только первый раз делать запрос, после чего просто открывать страницу
 /******************/ 
 
 window.onload = function(){
@@ -10,10 +9,10 @@ window.onload = function(){
 	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var myReuestHTML = new XMLHttpRequest(); // ajax зпрос для получения html
-	var filter = document.getElementById('btn-filters'); // добавление табов ****временно
+	var btnFilter = document.getElementById('btn-filters'); // добавление табов ****временно
 	var filterContainer = document.getElementById('content-info'); // контейнер для табов
 	var jsonContainer = document.getElementById("works-container"); // контейнер, куда будут ложиться данные json
-	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
+	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных работ
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
 	var btnTop = document.getElementById('btn-top'); //на верх
@@ -27,6 +26,17 @@ window.onload = function(){
 	mobileDisplay();
 	isActiveMenu();
 	loadWindow();
+
+	btnTop.addEventListener('click', function(e) {
+	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
+	   scrollTop();
+	}, false);
+
+	/* плавный скролл на верх */ 
+	function scrollTop(){
+		 window.scrollBy(0,-50); // чем меньше значение (цифра -10), тем выше скорость перемещения
+	  	if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
+	}
 
 	/* после загрузки страницы */
 	function loadWindow(){
@@ -44,7 +54,7 @@ window.onload = function(){
 		openActiveConent(event);
 	});
 
-	//* функция открытия контента *//
+	//* функция открытия контента (работ)*//
 	function openActiveConent(event){
 		document.getElementById('loaders').classList.remove('hidden');
 		for(var i = 0; i < filterContainer.children.length; i++){
@@ -52,9 +62,7 @@ window.onload = function(){
 			if (event.target.parentNode.getAttribute('data-link') == filterContainer.children[i].id){
 				filterContainer.children[i].classList.add('active');
 				if (filterContainer.children[i].id == 'works'){
-					setTimeout(function(){
-						jsonContainer.querySelector('.work__item').style = "visibility: visible; max-height: 100%;";
-					}, 400);
+					jsonContainer.querySelector('.work__item').style = "display: flex;";
 				}
 			}
 		}
@@ -88,21 +96,22 @@ window.onload = function(){
 	};
 
 	/* функция ajax запроса (фильтры) */
-	function getHTML(){
-		this.classList.add('disabled');
+	function getFilters(){
 		myReuestHTML.open("GET", "../layout/filters-work.html", true);
 		myReuestHTML.setRequestHeader('Content-Type', 'application/html');
 		myReuestHTML.onreadystatechange = function(){
 			if(myReuestHTML.readyState == 4 && myReuestHTML.status == 200) {
 				var myHTML = myReuestHTML.responseText;
-				renderHTML(myHTML);
+				renderFilters(myHTML);
+				btnFilter.classList.add('scale-out');
+				setTimeout(function(){btnFilter.style = "display: none;"}, 200);
 			}
 		}
 		myReuestHTML.send();
 	};
 
 	/* функция вставки фильтра в контейнер */
-	function renderHTML(_filters) {
+	function renderFilters(_filters) {
 		var containerFilters = document.getElementById('works');
 		containerFilters.insertAdjacentHTML('afterBegin', _filters);
 		filterWorks();
@@ -119,6 +128,14 @@ window.onload = function(){
 
 		sorts.addEventListener('click', function(){
 			activeItem(event, sortsItem);
+
+			/* сортировка */
+			var activeSort = document.querySelector('#work-sort .work__filter.active');
+			if (activeSort.dataset.sort == 'list'){
+				jsonContainer.classList.add('list');
+			} else {
+				jsonContainer.classList.remove('list');
+			}
 		});
 	}
 
@@ -158,6 +175,18 @@ window.onload = function(){
 		n += COUNT;
 
 		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
+
+		/* фильтрация работ после добавления */
+		var selectFilter = document.querySelector(".work__filter.active");
+		if (selectFilter) {
+			for (var i = 0; i < jsonContainer.children.length; i++) {
+				jsonContainer.children[i].style = "display: none;";
+				if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+					jsonContainer.children[i].style = "display: flex;";
+				}
+			}
+		}
+
 	};
 
 	/* функция фильтрации работ */
@@ -168,10 +197,9 @@ window.onload = function(){
 			var selectFilter = event.target;
 			if (workFilter != selectFilter) {
 				for (var i = 0; i < jsonContainer.children.length; i++) {
-					jsonContainer.children[i].style = "visibility: hidden; max-height: 0;";
-					setTimeout(jsonContainer.children[i].style = 'display: none;', 500);
+					jsonContainer.children[i].style = "display: none;";
 					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
-						jsonContainer.children[i].style = "visibility: visible; max-height: 100%; display: block;";
+						jsonContainer.children[i].style = "display: flex;";
 					}
 				}
 			}
@@ -215,9 +243,11 @@ window.onload = function(){
 	function mobileDisplay(){
 		if(window.innerWidth < 680) {
 			home.classList.add('mobile');
+			btnToggle.classList.remove('active');
 		}
 		else {
 			home.classList.remove('mobile');
+			btnToggle.classList.add('active');
 		}
 	}
 
@@ -231,7 +261,7 @@ window.onload = function(){
 		}
 	}
 
-	filter.addEventListener('click', getHTML);
+	btnFilter.addEventListener('click', getFilters);
 
 	btnToggle.addEventListener('click', toogleMenu);
 
@@ -260,14 +290,13 @@ window.onload = function(){
 		// 	}
 		// };
 
-		function srcollTop(){
+		function openTop(){
 			if (window.pageYOffset >= 600) {
 				btnTop.style = "bottom: -35px; right: -35px;";
 			}
-			else btnTop.style = "bottom: 0; roght: 0;";
+			else btnTop.style = "bottom: -100px; right: -100px;";
 		};
-		srcollTop();
-		
+		openTop();
 	};
 
 

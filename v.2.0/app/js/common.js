@@ -1,6 +1,4 @@
 /******************/ 
-// переделать код на промисы!!!!
-// сделать сортировку
 // начальную загрузку работ
 // на все пункты меню сделать ajax запросы, при том, только первый раз делать запрос, после чего просто открывать страницу
 /******************/ 
@@ -11,10 +9,10 @@ window.onload = function(){
 	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
 	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var myReuestHTML = new XMLHttpRequest(); // ajax зпрос для получения html
-	var filter = document.getElementById('btn-filters'); // добавление табов ****временно
+	var btnFilter = document.getElementById('btn-filters'); // добавление табов ****временно
 	var filterContainer = document.getElementById('content-info'); // контейнер для табов
 	var jsonContainer = document.getElementById("works-container"); // контейнер, куда будут ложиться данные json
-	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных
+	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных работ
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
 	var btnTop = document.getElementById('btn-top'); //на верх
@@ -98,21 +96,22 @@ window.onload = function(){
 	};
 
 	/* функция ajax запроса (фильтры) */
-	function getHTML(){
-		this.classList.add('disabled');
+	function getFilters(){
 		myReuestHTML.open("GET", "../layout/filters-work.html", true);
 		myReuestHTML.setRequestHeader('Content-Type', 'application/html');
 		myReuestHTML.onreadystatechange = function(){
 			if(myReuestHTML.readyState == 4 && myReuestHTML.status == 200) {
 				var myHTML = myReuestHTML.responseText;
-				renderHTML(myHTML);
+				renderFilters(myHTML);
+				btnFilter.classList.add('scale-out');
+				setTimeout(function(){btnFilter.style = "display: none;"}, 200);
 			}
 		}
 		myReuestHTML.send();
 	};
 
 	/* функция вставки фильтра в контейнер */
-	function renderHTML(_filters) {
+	function renderFilters(_filters) {
 		var containerFilters = document.getElementById('works');
 		containerFilters.insertAdjacentHTML('afterBegin', _filters);
 		filterWorks();
@@ -136,7 +135,6 @@ window.onload = function(){
 				jsonContainer.classList.add('list');
 			} else {
 				jsonContainer.classList.remove('list');
-
 			}
 		});
 	}
@@ -263,7 +261,7 @@ window.onload = function(){
 		}
 	}
 
-	filter.addEventListener('click', getHTML);
+	btnFilter.addEventListener('click', getFilters);
 
 	btnToggle.addEventListener('click', toogleMenu);
 

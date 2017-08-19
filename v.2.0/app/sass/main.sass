@@ -51,15 +51,17 @@ body
 
 /*конец общих стилей*/
 
+.material-icons
+	font-size: 26px
 
 /* все стили */
 .home
-	background-color: #fafafa
+	@extend .grey, .lighten-4
 	min-height: 100%
 
 .toggle-menu
 	color: #fff
-	@extend .waves-light, .transparent
+	@extend .blue, .darken-1
 
 /* панель юзер */
 .user
@@ -146,7 +148,7 @@ body
 	background-color: #fff
 	margin: 10px
 	transition: all 0.3s ease
-	@extend .z-depth-3
+	@extend .z-depth-2
 	.work__img
 		max-width: 100%
 		height: 420px
@@ -176,8 +178,14 @@ body
 				max-width: 100%
 
 .btn-open
-	// @extend .blue, .darken-1
 	@extend .red
+
+.btn-filters
+	width: 100%
+	margin-bottom: 10px
+	transition: all 0.3s
+	height: 40px
+	@extend .cyan
 
 .btn-top
 	position: fixed
@@ -230,7 +238,7 @@ body
 		padding: 0
 		font-size: 26px
 		display: flex
-		padding: 10px
+		padding: 8px
 		height: 100%
 		color: rgba(#fff, .5)
 		border-radius: 50%
