@@ -5,14 +5,21 @@
 
 window.onload = function(){
 
+	var requestWork = new XMLHttpRequest(); // ajax запрос на получение данных работы
+	var requestFilter = new XMLHttpRequest(); // ajax зпрос для получения фильтра
+	var requestAbout = new XMLHttpRequest(); // ajax запрос для получения данных обо мне
+	var requestContact = new XMLHttpRequest(); // ajax запрос для получения данных контактов
+
+	var countClickAbout = 0; // подсчет на клики
+	var countClickWork = 0; // подсчет на клики
+	var countClickContact = 0; // подсчет на клики
+
 	var menu = document.getElementById('menu'); // Основное меню
 	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
-	var myReuest = new XMLHttpRequest(); // ajax запрос на получение данных работы
-	var myReuestHTML = new XMLHttpRequest(); // ajax зпрос для получения html
-	var btnFilter = document.getElementById('btn-filters'); // добавление табов ****временно
-	var filterContainer = document.getElementById('content-info'); // контейнер для табов
+	var btnFilter = document.getElementById('btn-filters'); // добавление фильтрации
+	var dataContainer = document.getElementById('data-container'); // контейнер для всей информации
 	var jsonContainer = document.getElementById("works-container"); // контейнер, куда будут ложиться данные json
-	var btnAjax = document.getElementById("work-ajax"); // кнопка для получение json данных работ
+	var btnWorkOpen = document.getElementById("work-ajax"); // кнопка для получение json данных работ
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
 	var btnTop = document.getElementById('btn-top'); //на верх
@@ -21,21 +28,71 @@ window.onload = function(){
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
-	var URL = "../data/works.json"; 
 
 	mobileDisplay();
 	isActiveMenu();
 	loadWindow();
 
-	btnTop.addEventListener('click', function(e) {
-	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
-	   scrollTop();
-	}, false);
+	/* функция создания ajax зфпроса (работы) */
+	function getWork(){
+		requestWork.open("GET", "../data/works.json", true);
+		requestWork.setRequestHeader('Content-Type', 'application/json');
+		requestWork.onreadystatechange = function(){
+			if (requestWork.readyState == 4 && requestWork.status == 200){
+				var returnRequest = JSON.parse(requestWork.response);
+				renderWorks(returnRequest);
+			}
+		}
+		requestWork.send();
+	};
 
-	/* плавный скролл на верх */ 
-	function scrollTop(){
-		 window.scrollBy(0,-50); // чем меньше значение (цифра -10), тем выше скорость перемещения
-	  	if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
+	/* функция ajax запроса (фильтры) */
+	function getFilter(){
+		requestFilter.open("GET", "../layout/filters-work.html", true);
+		requestFilter.setRequestHeader('Content-Type', 'application/html');
+		requestFilter.onreadystatechange = function(){
+			if(requestFilter.readyState == 4 && requestFilter.status == 200) {
+				var returnRequest = requestFilter.responseText;
+				renderFilters(returnRequest);
+				btnFilter.classList.add('scale-out');
+				setTimeout(function(){btnFilter.style = "display: none;"}, 200);
+			}
+		}
+		requestFilter.send();
+	};
+
+	/* функция ajax запроса (обо мне) */
+	function getAbout(){
+		requestAbout.open('GET', '../layout/about.html', true);
+		requestAbout.setRequestHeader('Content-Type', 'application/html');
+		requestAbout.onreadystatechange = function(){
+			if (requestAbout.readyState == 4 && requestAbout.status == 200){
+				var returnRequest = requestAbout.responseText;
+				if (countClickAbout < 1){
+					var containerAbout = document.getElementById('about');
+					containerAbout.insertAdjacentHTML('afterBegin', returnRequest);
+				}
+				countClickAbout++;
+			}
+		}
+		requestAbout.send();
+	}
+
+	/* функция ajax запроса (контакты) */
+	function getContact(){
+		requestContact.open('GET', '../layout/contact.html', true);
+		requestContact.setRequestHeader('Content-Type', 'application/html');
+		requestContact.onreadystatechange = function(){
+			if (requestContact.readyState == 4 && requestContact.status == 200){
+				var returnRequest = requestContact.responseText;
+				if (countClickContact < 1){
+					var containerContact = document.getElementById('contact');
+					containerContact.insertAdjacentHTML('afterBegin', returnRequest);
+				}
+				countClickContact++;
+			}
+		}
+		requestContact.send();
 	}
 
 	/* после загрузки страницы */
@@ -43,32 +100,43 @@ window.onload = function(){
 		menu.firstElementChild.classList.add('active');
 		document.getElementById('about').classList.add('active');
 		setTimeout(function(){
+			getAbout();
 			document.getElementById('loaders').classList.add('hidden');
-		}, 300);
+		}, 200);
 	};
 
 	/* функция активного пункта меню */
 	menu.addEventListener('click', function(){
-		closeMobileMenu();
 		activeItem(event, menuItem, true);
+		closeMobileMenu();
 		openActiveConent(event);
 	});
 
 	//* функция открытия контента (работ)*//
 	function openActiveConent(event){
 		document.getElementById('loaders').classList.remove('hidden');
-		for(var i = 0; i < filterContainer.children.length; i++){
-			filterContainer.children[i].classList.remove('active');
-			if (event.target.parentNode.getAttribute('data-link') == filterContainer.children[i].id){
-				filterContainer.children[i].classList.add('active');
-				if (filterContainer.children[i].id == 'works'){
+		for(var i = 0; i < dataContainer.children.length; i++){
+			dataContainer.children[i].classList.remove('active');
+			if (event.target.parentNode.getAttribute('data-link') == dataContainer.children[i].id){
+				dataContainer.children[i].classList.add('active');
+				if (dataContainer.children[i].id == 'about'){
+					getAbout();
+				} else if (dataContainer.children[i].id == 'works') {
+					if (countClickWork < 1){
+						getWork();
+					}
+					countClickWork++;
+				} else if (dataContainer.children[i].id == 'contact') {
+					getContact();
+				}
+				if (dataContainer.children[i].id == 'works'){
 					jsonContainer.querySelector('.work__item').style = "display: flex;";
 				}
 			}
 		}
 		setTimeout(function(){
 			document.getElementById('loaders').classList.add('hidden');
-		}, 300);
+		}, 200);
 	}
 
 	/* универсальная функия активного пункта меню */
@@ -81,34 +149,6 @@ window.onload = function(){
 		thisActiveItem.classList.add('active');
 		//console.log(thisActiveItem);
 	}
-
-	/* функция создания ajax зфпроса (работы) */
-	function getJson(){
-		myReuest.open("GET", URL, true);
-		myReuest.setRequestHeader('Content-Type', 'application/json');
-		myReuest.onreadystatechange = function(){
-			if (myReuest.readyState == 4 && myReuest.status == 200){
-				var myDate = JSON.parse(myReuest.response);
-				renderWorks(myDate);
-			}
-		}
-		myReuest.send();
-	};
-
-	/* функция ajax запроса (фильтры) */
-	function getFilters(){
-		myReuestHTML.open("GET", "../layout/filters-work.html", true);
-		myReuestHTML.setRequestHeader('Content-Type', 'application/html');
-		myReuestHTML.onreadystatechange = function(){
-			if(myReuestHTML.readyState == 4 && myReuestHTML.status == 200) {
-				var myHTML = myReuestHTML.responseText;
-				renderFilters(myHTML);
-				btnFilter.classList.add('scale-out');
-				setTimeout(function(){btnFilter.style = "display: none;"}, 200);
-			}
-		}
-		myReuestHTML.send();
-	};
 
 	/* функция вставки фильтра в контейнер */
 	function renderFilters(_filters) {
@@ -141,7 +181,7 @@ window.onload = function(){
 
 	/* функция вставки json-данных в контейнер */
 	function renderWorks(dataJson){
-		var printHTML = "";                  // вывод на html
+		var printWork = "";                  // вывод на html
 		var dataLenght = dataJson.length;    // количетсво всех объектов в файле
 		var COUNT = 2;                       // константа, вывод записей при нажатии
 
@@ -166,15 +206,15 @@ window.onload = function(){
 			itemWork.querySelector('.work__author-name').innerHTML = dataJson[i].authorName;
 			var wrapItem = document.createElement('div');
 			wrapItem.appendChild(itemWork);
-			printHTML += wrapItem.innerHTML;
+			printWork += wrapItem.innerHTML;
 
 			if (i == dataLenght - 1) {
-				btnAjax.classList.add('disabled');
+				btnWorkOpen.classList.add('disabled');
 			}
 		}
 		n += COUNT;
 
-		jsonContainer.insertAdjacentHTML('beforeend', printHTML);
+		jsonContainer.insertAdjacentHTML('beforeend', printWork);
 
 		/* фильтрация работ после добавления */
 		var selectFilter = document.querySelector(".work__filter.active");
@@ -210,6 +250,7 @@ window.onload = function(){
 	function toogleMenu(){
 		this.classList.toggle('active');
 		isActiveMenu();
+
 	}
 
 	/* функция проверки меню на активность */
@@ -261,7 +302,7 @@ window.onload = function(){
 		}
 	}
 
-	btnFilter.addEventListener('click', getFilters);
+	btnFilter.addEventListener('click', getFilter);
 
 	btnToggle.addEventListener('click', toogleMenu);
 
@@ -269,8 +310,20 @@ window.onload = function(){
 		closeMobileMenu();
 	});
 
-	/* событие получения данных */
-	btnAjax.addEventListener("click", getJson); 
+	/* событие получения данных работ */
+	btnWorkOpen.addEventListener("click", getWork); 
+
+	/* вызов функции скроллинга на верх */
+	btnTop.addEventListener('click', function(e) {
+	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
+	   scrollTop();
+	}, false);
+
+	/* плавный скролл на верх */ 
+	function scrollTop(){
+		 window.scrollBy(0,-50); // чем меньше значение (цифра -10), тем выше скорость перемещения
+	  	if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
+	}
 
 	/* событие при изменении разришения дисплея */
 	window.onresize = function(){
@@ -286,10 +339,11 @@ window.onload = function(){
 		// 	var containerY = jsonContainer.getBoundingClientRect().bottom + jsonContainer.clientHeight; 
 		// 	console.log( "Браузер = ", windowY ,"; "," Контент = ", containerY);
 		// 	if (windowY > containerY) {
-		// 		getJson();
+		// 		getWork();
 		// 	}
 		// };
 
+		/* функция появления кнопки на верх */
 		function openTop(){
 			if (window.pageYOffset >= 600) {
 				btnTop.style = "bottom: -35px; right: -35px;";

@@ -25,16 +25,11 @@ gulp.task('common-js', function() {
 
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
-		//'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/materialize/js/waves.js',
-		// 'app/libs/materialize/js/transitions.js',
-		// 'app/libs/materialize/js/global.js',
-		// 'app/libs/materialize/js/buttons.js',
-		// 'app/libs/materialize/js/animation.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
-	//.pipe(uglify()) // Минимизировать весь js (на выбор)
+	.pipe(uglify()) // Минимизировать весь js (на выбор)
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -94,6 +89,10 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 	var buildData = gulp.src([
 			'app/data/*',
 		]).pipe(gulp.dest('dist/data'));
+
+	var buildLayout = gulp.src([
+			'app/layout/*',
+		]).pipe(gulp.dest('dist/layout'));
 
 });
 
