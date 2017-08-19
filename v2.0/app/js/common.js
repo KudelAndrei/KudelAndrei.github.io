@@ -1,6 +1,6 @@
 /******************/ 
 // начальную загрузку работ
-// на все пункты меню сделать ajax запросы, при том, только первый раз делать запрос, после чего просто открывать страницу
+// поработать с прелоадером
 /******************/ 
 
 window.onload = function(){
@@ -183,7 +183,7 @@ window.onload = function(){
 	function renderWorks(dataJson){
 		var printWork = "";                  // вывод на html
 		var dataLenght = dataJson.length;    // количетсво всех объектов в файле
-		var COUNT = 2;                       // константа, вывод записей при нажатии
+		var COUNT = 3;                       // константа, вывод записей при нажатии
 
 		k = dataLenght - n < COUNT ? dataLenght - n: COUNT; 
 		for (var i = n; i < n + k; i++) {
@@ -352,6 +352,5 @@ window.onload = function(){
 		};
 		openTop();
 	};
-
 
 }
