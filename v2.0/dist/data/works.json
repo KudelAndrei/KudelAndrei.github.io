@@ -1,52 +1,92 @@
 [
 	{
-		"img": "../img/works/5.png",
+		"img": "./img/works/5.png",
 		"type": "landing",
 		"date": "20.10.2017",
 		"head": "Meowsy",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates!",
 		"tag": ["JS", "Angular", "React", "Jquery", "Pug"],
-		"authorImg": "../img/user.jpg",
+		"authorImg": "./img/user.jpg",
 		"authorName" : "authorName"
 	},
 	{
-		"img": "../img/works/1.png",
+		"img": "./img/works/1.png",
 		"type": "design",
 		"date": "21.0.2017",
 		"head": "Meowsy 1",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit!",
 		"tag": ["Pug", "SASS", "Less", "Components"],
-		"authorImg": "../img/user.jpg",
+		"authorImg": "./img/user.jpg",
 		"authorName" : "Name LastName"
 	},
 	{
-		"img": "../img/works/2.jpeg",
+		"img": "./img/works/2.png",
 		"type": "design",
 		"date": "22.10.2017",
 		"head": "Meowsy 2",
 		"desc": "Lorem ipsum dolor sit amet, adipisicing elit. Earum, voluptates!",
 		"tag": ["Hello", "World", "you", "Are"],
-		"authorImg": "../img/works/noimage.png",
+		"authorImg": "./img/works/noimage.png",
 		"authorName" : "First Name"
 	},
 	{
-		"img": "../img/works/3.png",
+		"img": "./img/works/3.png",
 		"type": "angular",
 		"date": "23.10.2017",
 		"head": "Meowsy 3",
 		"desc": "Lorem ipsum dolor sit amet!",
 		"tag": ["sass", "Jade", "Vue", "Material"],
-		"authorImg": "../img/user.jpg",
+		"authorImg": "./img/user.jpg",
 		"authorName" : "Second Name"
 	},
 	{
-		"img": "../img/works/4.png",
-		"type": "verstka",
+		"img": "./img/works/4.png",
+		"type": "angular",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
 		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
 		"tag": ["sass", "pug", "js", "angular"],
-		"authorImg": "../img/user.jpg",
+		"authorImg": "./img/user.jpg",
+		"authorName" : "Hello Name"
+	},
+	{
+		"img": "./img/works/5.png",
+		"type": "landing",
+		"date": "24.10.2017",
+		"head": "Meowsy 4",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
+		"tag": ["sass", "pug", "js", "angular"],
+		"authorImg": "./img/user.jpg",
+		"authorName" : "Hello Name"
+	},
+	{
+		"img": "./img/works/2.png",
+		"type": "landing",
+		"date": "24.10.2017",
+		"head": "Meowsy 4",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
+		"tag": ["sass", "pug", "js", "angular"],
+		"authorImg": "./img/user.jpg",
+		"authorName" : "Hello Name"
+	},
+	{
+		"img": "./img/works/3.png",
+		"type": "design",
+		"date": "24.10.2017",
+		"head": "Meowsy 4",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
+		"tag": ["sass", "pug", "js", "angular"],
+		"authorImg": "./img/user.jpg",
+		"authorName" : "Hello Name"
+	},
+	{
+		"img": "./img/works/5.png",
+		"type": "angular",
+		"date": "24.10.2017",
+		"head": "Meowsy 4",
+		"desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, voluptates! Lorem ipsum dolor sit amet.",
+		"tag": ["sass", "pug", "js", "angular"],
+		"authorImg": "./img/user.jpg",
 		"authorName" : "Hello Name"
 	}
 ]

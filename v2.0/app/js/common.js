@@ -35,7 +35,7 @@ window.onload = function(){
 
 	/* функция создания ajax зфпроса (работы) */
 	function getWork(){
-		requestWork.open("GET", "../data/works.json", true);
+		requestWork.open("GET", "./data/works.json", true);
 		requestWork.setRequestHeader('Content-Type', 'application/json');
 		requestWork.onreadystatechange = function(){
 			if (requestWork.readyState == 4 && requestWork.status == 200){
@@ -48,7 +48,7 @@ window.onload = function(){
 
 	/* функция ajax запроса (фильтры) */
 	function getFilter(){
-		requestFilter.open("GET", "../layout/filters-work.html", true);
+		requestFilter.open("GET", "./layout/filters-work.html", true);
 		requestFilter.setRequestHeader('Content-Type', 'application/html');
 		requestFilter.onreadystatechange = function(){
 			if(requestFilter.readyState == 4 && requestFilter.status == 200) {
@@ -63,7 +63,7 @@ window.onload = function(){
 
 	/* функция ajax запроса (обо мне) */
 	function getAbout(){
-		requestAbout.open('GET', '../layout/about.html', true);
+		requestAbout.open('GET', './layout/about.html', true);
 		requestAbout.setRequestHeader('Content-Type', 'application/html');
 		requestAbout.onreadystatechange = function(){
 			if (requestAbout.readyState == 4 && requestAbout.status == 200){
@@ -80,7 +80,7 @@ window.onload = function(){
 
 	/* функция ajax запроса (контакты) */
 	function getContact(){
-		requestContact.open('GET', '../layout/contact.html', true);
+		requestContact.open('GET', './layout/contact.html', true);
 		requestContact.setRequestHeader('Content-Type', 'application/html');
 		requestContact.onreadystatechange = function(){
 			if (requestContact.readyState == 4 && requestContact.status == 200){
