@@ -1,7 +1,18 @@
 /******************/ 
-// начальную загрузку работ
+// убрать первую работу со страницы
 // поработать с прелоадером
 /******************/ 
+
+(function(){
+	if(window.innerWidth < 680) {
+		document.getElementById('home').classList.add('mobile');
+		document.getElementById('toggle-menu').classList.remove('active');
+	}
+	else {
+		document.getElementById('home').classList.remove('mobile');
+		document.getElementById('toggle-menu').classList.add('active');
+	}
+})();
 
 window.onload = function(){
 
@@ -269,7 +280,7 @@ window.onload = function(){
 		} 
 		/* меню для девайсов */
 		else {
-			btnMenuClose.style = "";
+			btnMenuClose.style = "opacity: 0; transform: scale(0);";
 			if (btnToggle.classList.contains('active')){
 				aside.style = "left: 0px;";
 				main.style = "min-width: auto; left: 0;";
@@ -298,6 +309,7 @@ window.onload = function(){
 		if (home.classList.contains('mobile')){
 			aside.style = "left: -600px;";
 			btnToggle.classList.remove('active');
+			btnMenuClose.style = "opacity: 0; transform: scale(0);";
 			main.style = "min-width: 100%; left: -300px;";
 		}
 	}
@@ -317,22 +329,22 @@ window.onload = function(){
 	btnTop.addEventListener('click', function(e) {
 	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
 	   scrollTop();
-	}, false);
+	 }, false);
 
 	/* плавный скролл на верх */ 
 	function scrollTop(){
 		 window.scrollBy(0,-50); // чем меньше значение (цифра -10), тем выше скорость перемещения
-	  	if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
-	}
+		 if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
+		}
 
-	/* событие при изменении разришения дисплея */
-	window.onresize = function(){
-		mobileDisplay();
-		isActiveMenu();
-	};
+		/* событие при изменении разришения дисплея */
+		window.onresize = function(){
+			mobileDisplay();
+			isActiveMenu();
+		};
 
-	/* событие получения данных при скролле */
-	window.onscroll = function(){
+		/* событие получения данных при скролле */
+		window.onscroll = function(){
 
 		// function scrollGetWorks(){
 		// 	var windowY = window.pageYOffset + window.innerHeight;
