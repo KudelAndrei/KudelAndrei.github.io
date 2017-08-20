@@ -2,20 +2,27 @@
 
 .home
 	position: relative
-	.home-before
+	.navigation-close
 		position: absolute
-		content: ""
-		top: 1000px
-		left: -1000px
-		width: 100%
-		height: 100%
+		top: 62px
+		right: -28px
+		width: 60px
+		height: 60px
+		background-color: #fff
 		border-radius: 50%
-		transform: scale(0)
+		overflow: hidden
 		opacity: 0
-		background-image: radial-gradient(top,circle cover,#181819 0,#1266b9 95%)
-		z-index: 99
-		transition: all 0.4s ease-in-out
-		cursor: pointer
+		transform: scale(0)
+		z-index: 90
+		border: none
+		text-align: center
+		outline: none
+		transition: all 0.4s
+		@extend .z-depth-2
+		>i
+			line-height: 60px
+			font-size: 44px
+			color: #1976d2
 	&.mobile
 		.aside
 			z-index: 99
@@ -26,8 +33,6 @@
 			@extend .z-depth-2
 			i
 				background-color: #1976d2
-
-
 
 .container
 	width: 96%
@@ -124,9 +129,11 @@
 	justify-content: space-between
 	height: 400px
 	width: 280px
-	border-radius: 3px
-	overflow: hidden
 	@extend .white, .z-depth-1
+	.user
+		border-radius: 3px 3px 0 0
+	.social-isons
+		border-radius: 0 0 3px 3px
 
 /* панель заглавной информации */
 .content-header

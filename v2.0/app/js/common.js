@@ -23,7 +23,7 @@ window.onload = function(){
 	var btnToggle = document.getElementById('toggle-menu'); // кнопка для открытия/закрытия паели с меню
 	var home = document.getElementById('home'); // для мобильников
 	var btnTop = document.getElementById('btn-top'); //на верх
-	var homeBefore = document.getElementById('home-before');
+	var btnMenuClose = document.getElementById('menu-close'); // закрытие меню
 	var aside = document.getElementById('aside');
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
@@ -260,7 +260,8 @@ window.onload = function(){
 			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
 				aside.style = "left: 50%; transform: translateX(-50%);";
-				homeBefore.style = "left: 0; top: 0; border-radius: 0; opacity: .8; transform: scale(1);";
+				btnMenuClose.style = "opacity: 1; transform: scale(1);";
+				main.style = "left: 100%;";
 			}
 			else {
 				aside.style = "left: -600px; transform: translateX(0);";
@@ -268,7 +269,7 @@ window.onload = function(){
 		} 
 		/* меню для девайсов */
 		else {
-			homeBefore.style = "left: -100%;";
+			btnMenuClose.style = "";
 			if (btnToggle.classList.contains('active')){
 				aside.style = "left: 0px;";
 				main.style = "min-width: auto; left: 0;";
@@ -296,7 +297,6 @@ window.onload = function(){
 	function closeMobileMenu(){
 		if (home.classList.contains('mobile')){
 			aside.style = "left: -600px;";
-			homeBefore.style = "left: -100%;";
 			btnToggle.classList.remove('active');
 			main.style = "min-width: 100%; left: -300px;";
 		}
@@ -306,7 +306,7 @@ window.onload = function(){
 
 	btnToggle.addEventListener('click', toogleMenu);
 
-	homeBefore.addEventListener('click', function(){
+	btnMenuClose.addEventListener('click', function(){
 		closeMobileMenu();
 	});
 
