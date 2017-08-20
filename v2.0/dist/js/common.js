@@ -282,7 +282,7 @@ window.onload = function(){
 
 	/* функция на проверку дисплея */
 	function mobileDisplay(){
-		if(window.innerWidth <= 680) {
+		if(document.body.clientWidth <= 680) {
 			home.classList.add('mobile');
 			btnToggle.classList.remove('active');
 		}
