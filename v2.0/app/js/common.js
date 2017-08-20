@@ -3,19 +3,7 @@
 // поработать с прелоадером
 /******************/ 
 
-(function(){
-	if(window.innerWidth < 680) {
-		document.getElementById('home').classList.add('mobile');
-		document.getElementById('toggle-menu').classList.remove('active');
-	}
-	else {
-		document.getElementById('home').classList.remove('mobile');
-		document.getElementById('toggle-menu').classList.add('active');
-	}
-})();
-
 window.onload = function(){
-
 	var requestWork = new XMLHttpRequest(); // ajax запрос на получение данных работы
 	var requestFilter = new XMLHttpRequest(); // ajax зпрос для получения фильтра
 	var requestAbout = new XMLHttpRequest(); // ajax запрос для получения данных обо мне
@@ -294,7 +282,7 @@ window.onload = function(){
 
 	/* функция на проверку дисплея */
 	function mobileDisplay(){
-		if(window.innerWidth < 680) {
+		if(window.innerWidth <= 680) {
 			home.classList.add('mobile');
 			btnToggle.classList.remove('active');
 		}
