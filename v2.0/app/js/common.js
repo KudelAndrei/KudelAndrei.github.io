@@ -1,5 +1,6 @@
 /******************/ 
 // поработать с прелоадером
+// сделать аддаптивным фильтры
 /******************/ 
 
 window.onload = function(){
@@ -12,6 +13,7 @@ window.onload = function(){
 	var countClickWork = 0; // подсчет на клики
 	var countClickContact = 0; // подсчет на клики
 
+	var windowScroll = document.documentElement.style; // html
 	var menu = document.getElementById('menu'); // Основное меню
 	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
 	var dataContainer = document.getElementById('data-container'); // контейнер для всей информации
@@ -258,10 +260,12 @@ window.onload = function(){
 			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
 				aside.style = "left: calc(50% - " + (aside.offsetWidth/2 + 10) + "px);";
+				windowScroll.cssText = windowScroll.cssText ? '' : 'overflow: hidden; width: ' + window.innerWidth + 'px;height:' + window.innerHeight +'px;';
 				btnMenuClose.style = "opacity: 1; transform: scale(1);";
-				main.style = "left: 100%;";
+				main.style = "left: 100%; display: none";
 			}
 			else {
+				windowScroll.cssText = "overflow: auto; width: 100%; height: 100%;";
 				aside.style = "left: -600px; transform: translateX(0);";
 			}
 		} 
@@ -299,6 +303,7 @@ window.onload = function(){
 			btnToggle.classList.remove('active');
 			btnMenuClose.style = "opacity: 0; transform: scale(0);";
 			main.style = "min-width: 100%; left: -300px;";
+			windowScroll.cssText = "overflow: auto; width: 100%; height: 100%;";
 		}
 	}
 
