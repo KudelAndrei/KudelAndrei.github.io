@@ -15,7 +15,6 @@ window.onload = function(){
 
 	var menu = document.getElementById('menu'); // Основное меню
 	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
-	var btnFilter = document.getElementById('btn-filters'); // добавление фильтрации
 	var dataContainer = document.getElementById('data-container'); // контейнер для всей информации
 	var jsonContainer = document.getElementById("works-container"); // контейнер, куда будут ложиться данные json
 	var btnWorkOpen = document.getElementById("work-ajax"); // кнопка для получение json данных работ
@@ -53,8 +52,6 @@ window.onload = function(){
 			if(requestFilter.readyState == 4 && requestFilter.status == 200) {
 				var returnRequest = requestFilter.responseText;
 				renderFilters(returnRequest);
-				btnFilter.classList.add('scale-out');
-				setTimeout(function(){btnFilter.style = "display: none;"}, 200);
 			}
 		}
 		requestFilter.send();
@@ -122,6 +119,7 @@ window.onload = function(){
 					getAbout();
 				} else if (dataContainer.children[i].id == 'works') {
 					if (countClickWork < 1){
+						getFilter();
 						getWork();
 					}
 					countClickWork++;
@@ -302,8 +300,6 @@ window.onload = function(){
 			main.style = "min-width: 100%; left: -300px;";
 		}
 	}
-
-	btnFilter.addEventListener('click', getFilter);
 
 	btnToggle.addEventListener('click', toogleMenu);
 

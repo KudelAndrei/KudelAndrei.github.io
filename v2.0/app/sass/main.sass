@@ -136,7 +136,9 @@ body
 	transition: all 0.3s ease
 	box-shadow: 0 1px 4px rgba(0,0,0,0.1)
 	background-color: #fbfbfb
-	border-radius: 3px 
+	border-radius: 3px
+	&:first-child
+		display: none!important
 	&:hover
 		box-shadow: rgba(0, 0, 0, 0.05) 0 4px 5px 0, rgba(0, 0, 0, 0.08) 0 1px 10px 1px, rgba(0, 0, 0, 0.13) 0 2px 4px -1px
 	.work__img
@@ -144,7 +146,7 @@ body
 		height: 420px
 		max-height: 500px
 		overflow: hidden
-		background-color: #f5f5f5
+		@extend .blue, .darken-2
 		>img
 			width: 100%
 	.work__content
