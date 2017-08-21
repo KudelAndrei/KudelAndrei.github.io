@@ -30,6 +30,7 @@ window.onload = function(){
 	mobileDisplay();
 	isActiveMenu();
 	loadWindow();
+	setHeightMenu();
 
 	/* функция создания ajax зфпроса (работы) */
 	function getWork(){
@@ -95,6 +96,7 @@ window.onload = function(){
 	function loadWindow(){
 		menu.firstElementChild.classList.add('active');
 		document.getElementById('about').classList.add('active');
+		getHeadMenu(menu.firstElementChild);
 		setTimeout(function(){
 			getAbout();
 			document.getElementById('loaders').classList.add('hidden');
@@ -106,6 +108,7 @@ window.onload = function(){
 		activeItem(event, menuItem, true);
 		closeMobileMenu();
 		openActiveConent(event);
+		getHeadMenu(event);
 	});
 
 	//* функция открытия контента (работ)*//
@@ -247,7 +250,6 @@ window.onload = function(){
 	function toogleMenu(){
 		this.classList.toggle('active');
 		isActiveMenu();
-
 	}
 
 	/* функция проверки меню на активность */
@@ -256,7 +258,7 @@ window.onload = function(){
 		if (home.classList.contains('mobile')){
 			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
-				aside.style = "left: 50%; transform: translateX(-50%);";
+				aside.style = "left: calc(50% - " + (aside.offsetWidth/2 + 10) + "px);";
 				btnMenuClose.style = "opacity: 1; transform: scale(1);";
 				main.style = "left: 100%;";
 			}
@@ -301,6 +303,21 @@ window.onload = function(){
 		}
 	}
 
+	/* функция для заголовка панели */
+	function getHeadMenu(_this) {
+		var thisHeadMenu = _this.target ? _this.target.innerHTML : _this.textContent;
+		document.querySelector('.content-header__text span').innerHTML = ' — ' + thisHeadMenu;
+	}
+
+	/* функция для высоты меню */
+	function setHeightMenu(){
+		if (window.innerHeight - 20 < aside.offsetHeight) {
+			aside.querySelector('.navigation').style = 'height: ' + (window.innerHeight - 40) + 'px;';
+		} else {
+			aside.querySelector('.navigation').style = 'height: 400px;';
+		}
+	}
+
 	btnToggle.addEventListener('click', toogleMenu);
 
 	btnMenuClose.addEventListener('click', function(){
@@ -326,6 +343,7 @@ window.onload = function(){
 		window.onresize = function(){
 			mobileDisplay();
 			isActiveMenu();
+			setHeightMenu();
 		};
 
 		/* событие получения данных при скролле */
