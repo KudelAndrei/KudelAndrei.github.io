@@ -318,7 +318,7 @@ window.onload = function(){
 
 	/* плавный скролл на верх */ 
 	function scrollTop(){
-		 window.scrollBy(0,-50); // чем меньше значение (цифра -10), тем выше скорость перемещения
+		 window.scrollBy(0,-60); // чем меньше значение (цифра -10), тем выше скорость перемещения
 		 if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
 		}
 
