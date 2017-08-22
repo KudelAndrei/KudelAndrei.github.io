@@ -1,6 +1,7 @@
 /******************/ 
 // поработать с прелоадером
 // сделать аддаптивным фильтры
+// пофиксить баг с aside
 /******************/ 
 
 window.onload = function(){
@@ -154,18 +155,13 @@ window.onload = function(){
 	/* функция вставки фильтра в контейнер */
 	function renderFilters(_filters) {
 		var containerFilters = document.getElementById('works');
-		containerFilters.insertAdjacentHTML('afterBegin', _filters);
-		filterWorks();
+		var workFilter = document.getElementById('work-filters');
 
-		var filters = document.getElementById('work-filters');
-		var filterItem = filters.getElementsByTagName('li');
+		containerFilters.insertAdjacentHTML('afterBegin', _filters);
+		filterWorks(workFilter);
 
 		var sorts = document.getElementById('work-sort');
 		var sortsItem = sorts.getElementsByTagName('li');
-
-		filters.addEventListener('click', function(){
-			activeItem(event, filterItem);
-		});
 
 		sorts.addEventListener('click', function(){
 			activeItem(event, sortsItem);
@@ -231,16 +227,24 @@ window.onload = function(){
 	};
 
 	/* функция фильтрации работ */
-	function filterWorks(){
-		var workFilter = document.getElementById('work-filters');
+	function filterWorks(_workFilter){
+		var workFilter = _workFilter? _workFilter : document.getElementById('work-filters');
+		var filterItem = workFilter.getElementsByTagName('li');
 
 		workFilter.addEventListener('click', function(){
-			var selectFilter = event.target;
-			if (workFilter != selectFilter) {
-				for (var i = 0; i < jsonContainer.children.length; i++) {
-					jsonContainer.children[i].style = "display: none;";
-					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
-						jsonContainer.children[i].style = "display: flex;";
+			if (event.target.classList.contains('work__filter-first')){
+				workFilter.classList.toggle('open');
+				console.log(event.textContent);
+			} else {
+				workFilter.classList.remove('open');
+				activeItem(event, filterItem);
+				var selectFilter = event.target;
+				if (workFilter != selectFilter) {
+					for (var i = 0; i < jsonContainer.children.length; i++) {
+						jsonContainer.children[i].style = "display: none;";
+						if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+							jsonContainer.children[i].style = "display: flex;";
+						}
 					}
 				}
 			}
@@ -322,6 +326,26 @@ window.onload = function(){
 		}
 	}
 
+	/* функция аддаптивности фильтрации */
+	function responseFilters(){
+		var wFiltersWrap = document.querySelector('.filters-wrap')? document.querySelector('.filters-wrap').offsetWidth: 'undefined';
+		var wFilters = document.getElementById('work-filters').offsetWidth;
+		var wSort = document.getElementById('work-sort').offsetWidth;
+
+		if (wFiltersWrap != 'undefined'){
+			console.log(wFil());
+			if(wFiltersWrap - wSort >= wFil() + 100){
+				document.getElementById('work-filters').classList.remove('dropdown');
+			} else {
+				document.getElementById('work-filters').classList.add('dropdown');
+			};
+		}
+	}
+
+	function wFil(){
+		return document.getElementById('work-filters').offsetWidth;
+	}
+
 	btnToggle.addEventListener('click', toogleMenu);
 
 	btnMenuClose.addEventListener('click', function(){
@@ -333,9 +357,9 @@ window.onload = function(){
 
 	/* вызов функции скроллинга на верх */
 	btnTop.addEventListener('click', function(e) {
-	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
-	   scrollTop();
-	 }, false);
+		 e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
+		 scrollTop();
+		}, false);
 
 	/* плавный скролл на верх */ 
 	function scrollTop(){
@@ -348,6 +372,7 @@ window.onload = function(){
 			mobileDisplay();
 			isActiveMenu();
 			setHeightMenu();
+			responseFilters();
 		};
 
 		/* событие получения данных при скролле */

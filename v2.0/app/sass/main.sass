@@ -25,7 +25,6 @@ body
 	justify-content: center
 	align-items: center
 	flex-grow: 1
-
 /*конец общих стилей*/
 
 .material-icons
@@ -218,6 +217,20 @@ body
 .work-filters, .work__filter-wrap
 	display: flex
 	margin: 0
+	.work__filter-first
+		display: none
+	&.dropdown
+		position: relative
+		flex-direction: column
+		.work__filter-first
+			display: block
+		.work__filter
+			display: none
+			&:first-child
+				display: block
+		&.open
+			.work__filter
+				display: block
 	.work__filter
 		padding: 10px 15px
 		cursor: pointer
@@ -228,6 +241,10 @@ body
 		&.active
 			@extend .cyan
 			color: #fff
+.work-filters
+	.work__filter
+		&:first-child
+				display: none
 .work__filter-wrap
 	align-items: center
 	.work__filter
