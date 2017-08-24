@@ -25,6 +25,7 @@ window.onload = function(){
 	var btnTop = document.getElementById('btn-top'); //на верх
 	var btnMenuClose = document.getElementById('menu-close'); // закрытие меню
 	var aside = document.getElementById('aside');
+	var navigation = aside.querySelector('.navigation');
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
@@ -319,10 +320,10 @@ window.onload = function(){
 
 	/* функция для высоты меню */
 	function setHeightMenu(){
-		if (window.innerHeight - 20 < aside.offsetHeight) {
-			aside.querySelector('.navigation').style = 'height: ' + (window.innerHeight - 40) + 'px;';
+		if (aside.offsetHeight > 400) {
+			navigation.style = 'height: 400px;';
 		} else {
-			aside.querySelector('.navigation').style = 'height: 400px;';
+			navigation.style = 'height: ' + (window.innerHeight - 40) + 'px;';
 		}
 	}
 
@@ -372,7 +373,7 @@ window.onload = function(){
 			mobileDisplay();
 			isActiveMenu();
 			setHeightMenu();
-			responseFilters();
+			//responseFilters();
 		};
 
 		/* событие получения данных при скролле */
