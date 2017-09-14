@@ -1,8 +1,10 @@
 /******************/ 
 // поработать с прелоадером
 // сделать аддаптивным фильтры
-// пофиксить баг с aside
+// сделать модальные окна
+// попробовать использовать медиа запросы в js - https://www.sitepoint.com/javascript-media-queries/
 /******************/ 
+
 
 window.onload = function(){
 	var requestWork = new XMLHttpRequest(); // ajax запрос на получение данных работы

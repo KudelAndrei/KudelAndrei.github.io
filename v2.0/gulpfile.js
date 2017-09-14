@@ -58,7 +58,7 @@ gulp.task('sass', function() {
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass'], browserSync.reload);
 	gulp.watch(['libs/**/*.js','app/js/*.js'], ['js']);
-	gulp.watch('app/*.html', browserSync.reload);
+	gulp.watch('app/**/*.html', browserSync.reload);
 });
 
 gulp.task('imagemin', function() {
