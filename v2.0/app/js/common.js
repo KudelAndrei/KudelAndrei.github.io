@@ -292,8 +292,8 @@ window.onload = function(){
 
 	/* функция на проверку дисплея */
 	function mobileDisplay(){
-		var windowWidth = document.body.clientWidth; // разрешение экрана
-		if(windowWidth <= 680) {
+		var mobileW = window.matchMedia( "(max-width: 680px)" );
+		if(mobileW.matches) {
 			home.classList.add('mobile');
 			btnToggle.classList.remove('active');
 		}

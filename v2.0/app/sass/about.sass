@@ -1,8 +1,14 @@
 @import 'vars'
 
 .about
-	display: flex
-	justify-content: space-between
+	.about-head
+		display: flex
+		justify-content: space-between
+		height: calc(100vh - 120px)
+		min-height: 600px
+	.about-more
+		
+
 	.about__content
 		width: 50%
 		margin: auto
@@ -20,6 +26,9 @@
 	.about__name
 		font-size: 72px
 		font-weight: 700
-		background: linear-gradient(#b62fff, #0f217c);
-		-webkit-background-clip: text;
-		color: transparent;
+		background: linear-gradient(#b62fff, #0f217c)
+		-webkit-background-clip: text
+		color: transparent
+	.about__head
+		font-weight: 700
+		text-transform: uppercase

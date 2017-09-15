@@ -18,7 +18,11 @@ body
 	position: relative
 	line-height: 1.6
 	font-family: $default-font
+	color: $text
 	overflow-x: hidden
+
+h1,h2,h3,h4,h5,h6
+	font-family: "Roboto Condensed", sans-serif 
 
 /* общие стили */
 .flex-center
@@ -60,8 +64,9 @@ body
 	.user__text
 		>h1
 			font-size: 16px
-			font-weight: 700
+			font-weight: 600
 			margin: 0 0 10px
+			font-family: "Open Sans", sans-serif
 			text-shadow: 1px 1px 1px #444
 		>h3
 			font-size: 14px
@@ -213,7 +218,7 @@ body
 	margin-bottom: 10px
 	padding: 5px
 	font-size: 14px
-	@extend .cyan, .darken-1, .z-depth-1
+	@extend .red, .z-depth-1
 
 .work-filters, .work__filter-wrap
 	display: flex
@@ -240,7 +245,7 @@ body
 		&:hover
 			color: #fff
 		&.active
-			@extend .cyan
+			background-color: rgba(#FFF, .3)
 			color: #fff
 .work-filters
 	.work__filter
