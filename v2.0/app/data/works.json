@@ -1,6 +1,7 @@
 [
 	{
 		"img": "./img/works/5.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "landing",
 		"date": "20.10.2017",
 		"head": "Meowsy",
@@ -11,6 +12,7 @@
 	},
 	{
 		"img": "./img/works/1.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "design",
 		"date": "21.0.2017",
 		"head": "Meowsy 1",
@@ -21,6 +23,7 @@
 	},
 	{
 		"img": "./img/works/2.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "design",
 		"date": "22.10.2017",
 		"head": "Meowsy 2",
@@ -31,6 +34,7 @@
 	},
 	{
 		"img": "./img/works/3.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "angular",
 		"date": "23.10.2017",
 		"head": "Meowsy 3",
@@ -41,6 +45,7 @@
 	},
 	{
 		"img": "./img/works/4.png",
+		"minIimg": "./img/works/min/1.png",
 		"type": "angular",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
@@ -51,6 +56,7 @@
 	},
 	{
 		"img": "./img/works/5.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "landing",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
@@ -61,6 +67,7 @@
 	},
 	{
 		"img": "./img/works/2.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "landing",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
@@ -71,6 +78,7 @@
 	},
 	{
 		"img": "./img/works/3.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "design",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
@@ -81,6 +89,7 @@
 	},
 	{
 		"img": "./img/works/5.png",
+		"minImg": "./img/works/min/1.png",
 		"type": "angular",
 		"date": "24.10.2017",
 		"head": "Meowsy 4",
