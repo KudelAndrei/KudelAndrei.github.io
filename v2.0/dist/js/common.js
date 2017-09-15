@@ -1,7 +1,10 @@
 /******************/ 
-// убрать первую работу со страницы
 // поработать с прелоадером
+// сделать аддаптивным фильтры
+// сделать модальные окна
+// попробовать использовать медиа запросы в js - https://www.sitepoint.com/javascript-media-queries/
 /******************/ 
+
 
 window.onload = function(){
 	var requestWork = new XMLHttpRequest(); // ajax запрос на получение данных работы
@@ -13,6 +16,7 @@ window.onload = function(){
 	var countClickWork = 0; // подсчет на клики
 	var countClickContact = 0; // подсчет на клики
 
+	var windowScroll = document.documentElement.style; // html
 	var menu = document.getElementById('menu'); // Основное меню
 	var menuItem = menu.getElementsByTagName('li'); // для активного пункта меню
 	var dataContainer = document.getElementById('data-container'); // контейнер для всей информации
@@ -23,6 +27,7 @@ window.onload = function(){
 	var btnTop = document.getElementById('btn-top'); //на верх
 	var btnMenuClose = document.getElementById('menu-close'); // закрытие меню
 	var aside = document.getElementById('aside');
+	var navigation = aside.querySelector('.navigation');
 	var main = document.getElementById('main');
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
@@ -153,18 +158,13 @@ window.onload = function(){
 	/* функция вставки фильтра в контейнер */
 	function renderFilters(_filters) {
 		var containerFilters = document.getElementById('works');
-		containerFilters.insertAdjacentHTML('afterBegin', _filters);
-		filterWorks();
+		var workFilter = document.getElementById('work-filters');
 
-		var filters = document.getElementById('work-filters');
-		var filterItem = filters.getElementsByTagName('li');
+		containerFilters.insertAdjacentHTML('afterBegin', _filters);
+		filterWorks(workFilter);
 
 		var sorts = document.getElementById('work-sort');
 		var sortsItem = sorts.getElementsByTagName('li');
-
-		filters.addEventListener('click', function(){
-			activeItem(event, filterItem);
-		});
 
 		sorts.addEventListener('click', function(){
 			activeItem(event, sortsItem);
@@ -230,16 +230,24 @@ window.onload = function(){
 	};
 
 	/* функция фильтрации работ */
-	function filterWorks(){
-		var workFilter = document.getElementById('work-filters');
+	function filterWorks(_workFilter){
+		var workFilter = _workFilter? _workFilter : document.getElementById('work-filters');
+		var filterItem = workFilter.getElementsByTagName('li');
 
 		workFilter.addEventListener('click', function(){
-			var selectFilter = event.target;
-			if (workFilter != selectFilter) {
-				for (var i = 0; i < jsonContainer.children.length; i++) {
-					jsonContainer.children[i].style = "display: none;";
-					if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
-						jsonContainer.children[i].style = "display: flex;";
+			if (event.target.classList.contains('work__filter-first')){
+				workFilter.classList.toggle('open');
+				console.log(event.textContent);
+			} else {
+				workFilter.classList.remove('open');
+				activeItem(event, filterItem);
+				var selectFilter = event.target;
+				if (workFilter != selectFilter) {
+					for (var i = 0; i < jsonContainer.children.length; i++) {
+						jsonContainer.children[i].style = "display: none;";
+						if (jsonContainer.children[i].classList.contains(selectFilter.dataset.filter)) {
+							jsonContainer.children[i].style = "display: flex;";
+						}
 					}
 				}
 			}
@@ -259,10 +267,12 @@ window.onload = function(){
 			main.style = "min-width: 100%; left: -300px;";
 			if (btnToggle.classList.contains('active')){
 				aside.style = "left: calc(50% - " + (aside.offsetWidth/2 + 10) + "px);";
+				windowScroll.cssText = windowScroll.cssText ? '' : 'overflow: hidden; width: ' + window.innerWidth + 'px;height:' + window.innerHeight +'px;';
 				btnMenuClose.style = "opacity: 1; transform: scale(1);";
-				main.style = "left: 100%;";
+				main.style = "left: 100%; display: none";
 			}
 			else {
+				windowScroll.cssText = "overflow: auto; width: 100%; height: 100%;";
 				aside.style = "left: -600px; transform: translateX(0);";
 			}
 		} 
@@ -282,8 +292,8 @@ window.onload = function(){
 
 	/* функция на проверку дисплея */
 	function mobileDisplay(){
-		var windowWidth = document.body.clientWidth; // разрешение экрана
-		if(windowWidth <= 680) {
+		var mobileW = window.matchMedia( "(max-width: 680px)" );
+		if(mobileW.matches) {
 			home.classList.add('mobile');
 			btnToggle.classList.remove('active');
 		}
@@ -300,6 +310,7 @@ window.onload = function(){
 			btnToggle.classList.remove('active');
 			btnMenuClose.style = "opacity: 0; transform: scale(0);";
 			main.style = "min-width: 100%; left: -300px;";
+			windowScroll.cssText = "overflow: auto; width: 100%; height: 100%;";
 		}
 	}
 
@@ -311,11 +322,31 @@ window.onload = function(){
 
 	/* функция для высоты меню */
 	function setHeightMenu(){
-		if (window.innerHeight - 20 < aside.offsetHeight) {
-			aside.querySelector('.navigation').style = 'height: ' + (window.innerHeight - 40) + 'px;';
+		if (aside.offsetHeight > 400) {
+			navigation.style = 'height: 400px;';
 		} else {
-			aside.querySelector('.navigation').style = 'height: 400px;';
+			navigation.style = 'height: ' + (window.innerHeight - 40) + 'px;';
 		}
+	}
+
+	/* функция аддаптивности фильтрации */
+	function responseFilters(){
+		var wFiltersWrap = document.querySelector('.filters-wrap')? document.querySelector('.filters-wrap').offsetWidth: 'undefined';
+		var wFilters = document.getElementById('work-filters').offsetWidth;
+		var wSort = document.getElementById('work-sort').offsetWidth;
+
+		if (wFiltersWrap != 'undefined'){
+			console.log(wFil());
+			if(wFiltersWrap - wSort >= wFil() + 100){
+				document.getElementById('work-filters').classList.remove('dropdown');
+			} else {
+				document.getElementById('work-filters').classList.add('dropdown');
+			};
+		}
+	}
+
+	function wFil(){
+		return document.getElementById('work-filters').offsetWidth;
 	}
 
 	btnToggle.addEventListener('click', toogleMenu);
@@ -329,9 +360,9 @@ window.onload = function(){
 
 	/* вызов функции скроллинга на верх */
 	btnTop.addEventListener('click', function(e) {
-	   e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
-	   scrollTop();
-	 }, false);
+		 e.preventDefault();  // запрет перехода по ссылке, вместо него скрипт
+		 scrollTop();
+		}, false);
 
 	/* плавный скролл на верх */ 
 	function scrollTop(){
@@ -344,6 +375,7 @@ window.onload = function(){
 			mobileDisplay();
 			isActiveMenu();
 			setHeightMenu();
+			//responseFilters();
 		};
 
 		/* событие получения данных при скролле */
