@@ -125,6 +125,18 @@
 
 	<button id="btn-top" class="btn btn-top btn-floating waves-effect"><i class="material-icons">keyboard_arrow_up</i></button>
 
+	<script>
+		var mobileW = window.matchMedia( "(max-width: 680px)" );
+		if(mobileW.matches) {
+			home.classList.add('mobile');
+			//toggle-menu.classList.remove('active');
+		}
+		else {
+			home.classList.remove('mobile');
+			//toggle-menu.classList.add('active');
+		}
+	</script>
+
 	<!-- все подключенный библиотеки -->
 	<script src="js/scripts.min.js"></script> 
 

@@ -3,7 +3,6 @@
 // сделать аддаптивным фильтры
 // сделать модальные окна
 // попробовать использовать медиа запросы в js - https://www.sitepoint.com/javascript-media-queries/
-// href в добавлении работы (картинка)
 /******************/ 
 
 
@@ -33,7 +32,7 @@ window.onload = function(){
 	var n = 0;  // начальное количетсво выведеных элементов
 	var k = 0;  // количество выводим данных при вызове функции (проверка на избытие)
 
-	mobileDisplay();
+	//mobileDisplay();
 	isActiveMenu();
 	loadWindow();
 	setHeightMenu();
