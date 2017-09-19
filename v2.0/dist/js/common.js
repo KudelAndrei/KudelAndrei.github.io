@@ -3,6 +3,7 @@
 // сделать аддаптивным фильтры
 // сделать модальные окна
 // попробовать использовать медиа запросы в js - https://www.sitepoint.com/javascript-media-queries/
+// href в добавлении работы (картинка)
 /******************/ 
 
 
@@ -189,7 +190,8 @@ window.onload = function(){
 		for (var i = n; i < n + k; i++) {
 			var itemWork = jsonContainer.firstChild.nextSibling.cloneNode(true);
 			itemWork.classList.add(dataJson[i].type);
-			itemWork.querySelector('.work__img img').src = dataJson[i].img;
+			itemWork.querySelector('.work__img img').src = dataJson[i].minImg;
+			itemWork.querySelector('.work__img a').setAttribute('href', dataJson[i].img);
 			itemWork.querySelector('.work__type').innerHTML = dataJson[i].type;
 			itemWork.querySelector('.work__date').innerHTML = dataJson[i].date;
 			itemWork.querySelector('.work__head').innerHTML = dataJson[i].head;
@@ -366,7 +368,7 @@ window.onload = function(){
 
 	/* плавный скролл на верх */ 
 	function scrollTop(){
-		 window.scrollBy(0,-60); // чем меньше значение (цифра -10), тем выше скорость перемещения
+		 window.scrollBy(0,-80); // чем меньше значение (цифра -10), тем выше скорость перемещения
 		 if (window.pageYOffset > 0) {requestAnimationFrame(scrollTop);}
 		}
 

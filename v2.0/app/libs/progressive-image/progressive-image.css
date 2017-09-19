@@ -18,7 +18,7 @@ a.progressive img {
 }
 
 a.progressive img.preview {
-  filter: blur(2vw);
+  filter: blur(4vw);
   transform: scale(1.05);
 }
 
@@ -27,7 +27,7 @@ a.progressive img.reveal {
   left: 0;
   top: 0;
   will-change: transform, opacity;
-  animation: reveal 1s ease-out;
+  animation: reveal 0.3s ease-out;
 }
 
 @keyframes reveal {

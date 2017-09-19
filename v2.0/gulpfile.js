@@ -16,7 +16,7 @@ var gulp           = require('gulp'),
 
 gulp.task('common-js', function() {
 	return gulp.src([
-		'app/libs/progressive-image/progressive-image.min.js',
+		'app/libs/progressive-image/progressive-image.js',
 		'app/js/common.js',
 		])
 	.pipe(concat('common.min.js'))
